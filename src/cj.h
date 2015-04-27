@@ -46,7 +46,7 @@
 
 #ifdef OS_WINDOWS
 #include <winsock2.h>
-#pragma comment(lib, "ws_32.lib")
+#pragma comment(lib, "ws2_32.lib")
 #endif
 
 #ifdef OS_LINUX

@@ -79,14 +79,14 @@ int Socket::recv(void *buffer, int size) {
 	memset(buffer, 0, size);
 	int len = 0;
 	if (fNonBlocking) {
-#ifdef OS_LINUX
-		len = ::recv(m_sock, buffer, size, MSG_DONTWAIT);
-#endif
+//#ifdef OS_LINUX
+		len = ::recv(m_sock, (char*)buffer, size, 0 /*MSG_DONTWAIT*/);
+//#endif
 	}
 	else {
-#ifdef OS_LINUX
-		len = ::recv(m_sock, buffer, size, 0);
-#endif
+//#ifdef OS_LINUX1
+		len = ::recv(m_sock, (char*)buffer, size, 0);
+//#endif
 	}
 	return len;
 }
@@ -95,7 +95,8 @@ int Socket::recv(Memory &memory) {
 	int size = this->getCurSize();
 	int pos = memory.getPos();
 	memory.setSize(size + pos);
-	return this->recv(((char*)memory.data) + pos, size);
+	int len = this->recv(((char*)memory.data) + pos, size);
+	return len;
 }
 
 
@@ -142,9 +143,6 @@ bool Socket::sendAll(Memory &memory) {
 	return this->sendAll(memory.data, memory.getSize());
 }
 
-
-
-
 void Socket::setNonBlocking(bool b) {
 	if (!isValid()) return;
 	fNonBlocking = b;
@@ -163,6 +161,11 @@ void Socket::setNonBlocking(bool b) {
 
 	fcntl(m_sock, F_SETFL, opts);
 	//fcntl(m_sock, F_SETFL, O_NONBLOCK);
+#endif
+
+#ifdef OS_WINDOWS
+	u_long iMode = fNonBlocking;
+	ioctlsocket(m_sock, FIONBIO, &iMode);
 #endif
 }
 bool Socket::isValid() {
@@ -185,6 +188,9 @@ void Socket::close() {
 	if (isValid()) {
 #ifdef OS_LINUX
 		::close(m_sock);
+#endif
+#ifdef OS_WINDOWS
+		::closesocket(m_sock);
 #endif
 		m_sock = -1;
 	}
@@ -422,16 +428,19 @@ bool ServerSocket::listen(int connCount) {
 }
 
 bool ServerSocket::accept() {
-#ifdef OS_LINUX
 	int addr_length = sizeof(m_addr);
+#ifdef OS_LINUX
 	int new_sock = ::accept(m_sock, (sockaddr *) &m_addr, (socklen_t *) &addr_length);
+#endif
+#ifdef OS_WINDOWS
+	int new_sock = ::accept(m_sock, (sockaddr *)&m_addr, &addr_length);
+#endif
 	if (new_sock <= 0) return false;
 
 	Socket *sock = new Socket(new_sock);
 	sock->setNonBlocking(this->fNonBlocking);
 	lstSocket.add(sock);
 	LOGGER_TRACE("Socket added ...");
-#endif
 	return true;
 }
 void ServerSocket::setNonBlocking(bool b) {
