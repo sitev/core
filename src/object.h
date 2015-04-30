@@ -14,7 +14,9 @@ namespace cj {
 	real random(); // 0..1
 	int random(int count); // 0..count-1
 	String generateUUID();
+#ifdef OS_WINDOWS
 	void usleep(big usec);
+#endif
 	ulong getUsageMemory();
 	void sendMail(String toEMail, String fromEMail, String subject, String message);
 	String dtRus(String dtUsa, int format);
