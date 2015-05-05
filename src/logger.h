@@ -40,7 +40,7 @@ else
 #define LOGGER_OUT(s) application->logger_out(s)
 #define LOGGER_OUT(flag, s) application->logger_out(flag, s)
 #else
-#define LOGGER_OUT(s)
+//#define LOGGER_OUT(s)
 #define LOGGER_OUT(flag, s)
 #endif
 
@@ -56,7 +56,7 @@ public:
 	Logger(String fileName);
 	Logger(String path, String file);
 
-	~Logger();
+	virtual ~Logger();
 
 	virtual void set(String fileName);
 	virtual void set(String path, String file);

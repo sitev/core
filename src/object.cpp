@@ -851,6 +851,7 @@ namespace cj {
 		if (m < 0) y--;
 		else if (m == 0 && d < 0) y--;
 		if (y < 0) return 0;
+		return y;
 	}
 	int DateTime::minusDay() {
 		rawDateTime -= 86400;

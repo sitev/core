@@ -39,6 +39,7 @@ namespace cj {
 	public:
 		Char();
 		Char(char32_t ch);
+		virtual ~Char() {}
 		char32_t get() {
 			return ch;
 		}

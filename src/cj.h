@@ -87,7 +87,7 @@ typedef basic_string<char32_t> u32string;
 #include "object.h"
 #include "stream.h"
 #include "logger.h"
-#include "socket.h"
+#include "cjsocket.h"
 
 #include "application.h"
 

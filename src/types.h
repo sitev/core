@@ -28,8 +28,8 @@
 //bool
 
 #ifdef OS_LINUX
-#define SOCKET int
-#define DWORD ulong
-#define ULONG ulong
+//#define SOCKET int
+//#define DWORD ulong
+//#define ULONG ulong
 #endif
 
