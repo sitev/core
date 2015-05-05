@@ -431,8 +431,7 @@ bool ServerSocket::bind(int port, ushort family, uint addr) {
 	m_addr.sin_addr.s_addr = htonl(addr);
 
 	int result = ::bind(m_sock, (struct sockaddr*) &m_addr, sizeof(m_addr));
-	int err1 = errno;
-	printf("error = %s\n", strerror(err1));
+//	int err1 = errno;
 	return result >= 0;
 }
 
