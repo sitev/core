@@ -211,7 +211,7 @@ int Memory::read(void *buffer, int count) {
 	return count;
 }
 int Memory::write(void *buffer, int count) {
-	if (data == NULL) return 0;
+//	if (data == NULL) return 0;
 	if (count <= 0) return 0;
 	setSize(size + count);
 	char *aData = (char*)data;
