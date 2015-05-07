@@ -6,11 +6,13 @@ namespace cj {
 //Debug — журналирование моментов вызова «крупных» операций. Старт/остановка потока, запрос пользователя и т.п.
 //Info — разовые операции, которые повторяются крайне редко, но не регулярно. (загрузка конфига, плагина, запуск бэкапа)
 
-//#define LOGGER_TRACE_FLAG 1
+	/*
+#define LOGGER_TRACE_FLAG 1
 //#define LOGGER_DEBUG_FLAG 1
-//#define LOGGER_INFO_FLAG 1
-//#define LOGGER_ERROR_FLAG 1
-//#define LOGGER_OUT_FLAG 1
+#define LOGGER_INFO_FLAG 1
+#define LOGGER_ERROR_FLAG 1
+#define LOGGER_OUT_FLAG 1
+*/
 
 #ifdef LOGGER_TRACE_FLAG
 #define LOGGER_TRACE(s) application->logger_out("TRACE", s)
@@ -26,7 +28,7 @@ namespace cj {
 
 #ifdef LOGGER_INFO_FLAG
 #define LOGGER_INFO(s) application->logger_out("INFO", s)
-else
+#else
 #define LOGGER_INFO(s)
 #endif
 

@@ -63,8 +63,8 @@ void Logger::out(String flag, String s) {
 	FILE *f = fopen(fileName.toString8().c_str(), "a");
 	fprintf(f, "%s %d %d %d %s: %s\n", dt.toString(dtfDatabase).toString8().c_str(), tv.tv_sec, tv.tv_usec, delta, flag.toString8().c_str(), s.toString8().c_str());
 	fclose(f);
-	application->mutexLogger.unlock();
 #endif
+	application->mutexLogger.unlock();
 }
 
 void Logger::out(String s) {

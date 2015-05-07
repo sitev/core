@@ -233,7 +233,11 @@ namespace cj {
 		s8 = this->toString8();
 	}
 	String::String(char value) {
-		s = value;
+		char mys[2];
+		mys[0] = value;
+		mys[1] = 0;
+		Convert32 convert32;
+		s = convert32.from_bytes(mys);
 		s8 = this->toString8();
 	}
 	String::String(int value) {
@@ -298,7 +302,7 @@ namespace cj {
 		String str(u32);
 		return str;
 	}
-	String operator+(const char* value, String stvalue){
+	String operator+(const char* value, String stvalue) {
 		String retString(value);
 		retString += stvalue;
 		return retString;
@@ -378,7 +382,10 @@ namespace cj {
 		return -1;
 	}
 	int String::toInt() {
-		return 0;
+		//s8 = "123";
+		//int a = stoi(s8);
+		int a = strtol(s8.c_str(), NULL, 0);
+		return a;
 	}
 	real String::toFloat() {
 		return 0;
@@ -682,8 +689,8 @@ namespace cj {
 		return true;
 	}
 
-	String ParamList::getValue(String s) {
-		return pars[s.toString8()];
+	String ParamList::getValue(String name) {
+		return pars[name.toString8()];
 	}
 
 	String ParamList::getName(int index) {
@@ -697,6 +704,27 @@ namespace cj {
 		for (int i = 0; i < index; i++) iter++;
 		return iter->second;
 	}
+
+	void ParamList::add(string name, string value) {
+		pars.insert(std::pair<string, string>(name, value));
+	}
+	void ParamList::insert(string name, string value) {
+		pars.insert(std::pair<string, string>(name, value));
+	}
+	string ParamList::getValue_s(string name) {
+		return pars[name];
+	}
+	string ParamList::getName_s(int index) {
+		auto iter = pars.begin();
+		for (int i = 0; i < index; i++) iter++;
+		return iter->first;
+	}
+	string ParamList::getValue_s(int index) {
+		auto iter = pars.begin();
+		for (int i = 0; i < index; i++) iter++;
+		return iter->second;
+	}
+
 
 
 	//---------------------------------------------------------------------------

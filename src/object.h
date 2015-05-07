@@ -168,6 +168,12 @@ namespace cj {
 		virtual String getValue(String name);
 		virtual String getName(int index);
 		virtual String getValue(int index);
+
+		virtual void add(string name, string value);
+		virtual void insert(string name, string value);
+		virtual string getValue_s(string name);
+		virtual string getName_s(int index);
+		virtual string getValue_s(int index);
 	};
 
 	enum DateTimeFormat { dtfRus, dtfDatabase, dtfYMDhm, dtfMilisecond };

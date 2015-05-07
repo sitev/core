@@ -79,11 +79,13 @@ class File : public Stream
 protected:
 	FILE *f;
 	virtual bool open();
-	String fileName;
-	String mode;
+	string fileName;
+	string mode;
 public:
 	File(String fileName, String mode);
 	File(String fileName);
+	File(string fileName, string mode);
+	File(string fileName);
 	~File();
 	bool isOpen();
 
@@ -102,7 +104,9 @@ public:
 	virtual void save();
 
 	static void createDir(String dirName);
+	static void createDir(string dirName);
 	static void createNullFile(String fileName);
+	static void createNullFile(string fileName);
 	static String getExtention(String fileName);
 
 	virtual FILE* getFILEPointer();

@@ -247,17 +247,30 @@ void Memory::setSize(int value) {
 //----------          class File          ----------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
 File::File(String fileName, String mode) {
-    this->fileName = fileName;
-    this->mode = mode;
-    open();
+	this->fileName = fileName.toString8();
+	this->mode = mode.toString8();
+	open();
 }
 File::File(String fileName) {
-    this->fileName = fileName;
-    mode = "wb";
-    if (!open()) {
+	this->fileName = fileName.toString8();
+	mode = "wb";
+	if (!open()) {
 		createNullFile(fileName);
 		open();
-    }
+	}
+}
+File::File(string fileName, string mode) {
+	this->fileName = fileName;
+	this->mode = mode;
+	open();
+}
+File::File(string fileName) {
+	this->fileName = fileName;
+	mode = "wb";
+	if (!open()) {
+		createNullFile(fileName);
+		open();
+	}
 }
 File::~File() {
 	if (f != NULL)
@@ -269,16 +282,17 @@ bool File::isOpen() {
 }
 bool File::open() {
 #ifdef OS_WINDOWS
-	int pos = fileName.getPosBack("\\");
-	if (pos < 0) pos = fileName.getPosBack("/");
+//	int pos = fileName.getPosBack("\\");
+	int pos = fileName.find_last_of("\\");
+//	if (pos < 0) pos = fileName.getPosBack("/");
+	if (pos < 0) pos = fileName.find_last_of("/");
 	if (pos >= 0) {
-		String dirName = fileName.subString(0, pos);
-		string dirName8 = dirName.toString8();
+		string dirName = fileName.substr(0, pos);
 		createDir(dirName);
 	}
 #endif
-	string fn = fileName.toString8();
-	string md = mode.toString8();
+	string fn = fileName;
+	string md = mode;
 	f = fopen(fn.c_str(), md.c_str());
 	if (f == NULL) return false;
 	return true;
@@ -410,11 +424,41 @@ void File::createDir(String dirName) {
 #endif
 	}
 }
+
+void File::createDir(string dirName) {
+	return;
+
+	string s = "";
+	while (dirName.length() > 0)
+	{
+		int pos = dirName.find("\\");
+		if (pos < 0) pos = dirName.find("/");
+		if (pos < 0) break;
+		string s1 = dirName.substr(0, pos);
+		s += s1;
+		dirName = dirName.substr(pos + 1, dirName.length());
+		string ss = s.substr(s.length() - 1, 1);
+		s += "\\";
+		if (ss == ":") continue;
+#ifdef OS_WINDOWS
+		CreateDirectory(s.c_str(), NULL);
+#endif
+#ifdef OS_LINUX
+
+#endif
+	}
+}
+
 void File::createNullFile(String fileName) {
-//	HFILE f = _lcreat(fileName.toChars(), 0);
-//	_lclose(f);
+	//	HFILE f = _lcreat(fileName.toChars(), 0);
+	//	_lclose(f);
 	FILE *ff;
 	ff = fopen(fileName.toString8().c_str(), "w");
+	fclose(ff);
+}
+void File::createNullFile(string fileName) {
+	FILE *ff;
+	ff = fopen(fileName.c_str(), "w");
 	fclose(ff);
 }
 String File::getExtention(String fileName) {
