@@ -28,6 +28,12 @@ void Stream::setPos(int value) {
 bool Stream::getEnd() {
 	return pos >= size;
 }
+bool Stream::eof() {
+	int pos = getPos();
+	int size = getSize();
+	return pos >= size;
+}
+
 int Stream::readInt(int &value) {
 	int a;
 	read(&a, sizeof(int));
@@ -168,6 +174,12 @@ int Stream::writeString(String value) {
 	}
 	return 0;
 }
+/*
+int Stream::readAllToString(String &value) {
+	value.setLength(this->size);
+	//value.
+}
+*/
 int Stream::readReal(real &value) {
 	long double A;
 	read(&A, sizeof(long double));
@@ -390,11 +402,6 @@ int File::write(void *buffer, int count) {
 int File::write(String str) {
 	int len = str.getLength();
 	return write((void*)str.toString8().c_str(), len);
-}
-bool File::eof() {
-	int pos = getPos();
-	int size = getSize();
-	return pos >= size;
 }
 void File::save() {
 	int pos = getPos();

@@ -19,6 +19,8 @@ public:
 	virtual int getPos();
 	virtual void setPos(int value);
 	virtual bool getEnd();
+	virtual bool eof();
+
 
 	virtual int readInt(int &value);
 	virtual int writeInt(int value);
@@ -59,6 +61,8 @@ public:
 
 	virtual int readString(String &value);
 	virtual int writeString(String value);
+
+	//virtual int readAllToString(String &value);
 };
 
 class Memory : public Stream
@@ -100,7 +104,6 @@ public:
 	virtual void setSize(int value);
 	virtual int getPos();
 	virtual void setPos(int value);
-	virtual bool eof();
 	virtual void save();
 
 	static void createDir(String dirName);
