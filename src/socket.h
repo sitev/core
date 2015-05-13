@@ -9,7 +9,7 @@ namespace cj {
 #endif
 
 const int MAXHOSTNAME = 200;
-const int MAXCONNECTIONS = 5;
+const int MAXCONNECTIONS = 100;
 const int MAXRECV = 1024;
 
 class Socket : public Object {

@@ -236,8 +236,14 @@ namespace cj {
 		char mys[2];
 		mys[0] = value;
 		mys[1] = 0;
+#ifdef OS_WINDOWS
 		Convert32 convert32;
 		s = convert32.from_bytes(mys);
+#endif
+
+#ifdef OS_LINUX
+	s = boost::locale::conv::utf_to_utf<char32_t>(mys);
+#endif
 		s8 = this->toString8();
 	}
 	String::String(int value) {
