@@ -176,6 +176,10 @@ namespace cj {
 		virtual string getValue_s(int index);
 	};
 
+	class Map : public ParamList {
+
+	};
+
 	enum DateTimeFormat { dtfRus, dtfDatabase, dtfYMDhm, dtfMilisecond };
 
 	class DateTime : public Object {
