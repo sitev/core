@@ -97,6 +97,7 @@ int Socket::recv(Memory &memory) {
 	int pos = memory.getPos();
 	memory.setSize(size + pos);
 	int len = this->recv(((char*)memory.data) + pos, size);
+
 	return len;
 }
 
