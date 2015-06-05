@@ -305,8 +305,14 @@ bool File::open() {
 #endif
 	string fn = fileName;
 	string md = mode;
+
+	printf("file open %s %s/n", fn.c_str(), md.c_str());
 	f = fopen(fn.c_str(), md.c_str());
-	if (f == NULL) return false;
+	if (f == NULL) {
+		printf("false\n");
+		return false;
+	}
+	printf("true\n");
 	return true;
 }
 int File::getSize() {

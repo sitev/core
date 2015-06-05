@@ -1,14 +1,9 @@
 #pragma once
 
 namespace cj {
-
-//Trace — вывод всего подряд. На тот случай, если Debug не позволяет локализовать ошибку.
-//Debug — журналирование моментов вызова «крупных» операций. Старт/остановка потока, запрос пользователя и т.п.
-//Info — разовые операции, которые повторяются крайне редко, но не регулярно. (загрузка конфига, плагина, запуск бэкапа)
-
-	/*
+/*
 #define LOGGER_TRACE_FLAG 1
-//#define LOGGER_DEBUG_FLAG 1
+#define LOGGER_DEBUG_FLAG 1
 #define LOGGER_INFO_FLAG 1
 #define LOGGER_ERROR_FLAG 1
 #define LOGGER_OUT_FLAG 1
