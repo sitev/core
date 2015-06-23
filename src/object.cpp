@@ -862,8 +862,8 @@ namespace cj {
 		if (sM.getLength() == 1) sMM = "0" + sMM;
 		if (sS.getLength() == 1) sS = "0" + sS;
 		if (dtf == dtfRus) return sD + "." + sM + "." + sY;
-		if (dtf == dtfYMDhm) return sY + "-" + sM + "-" + sD + " " + sH + "." + sMM;
-		return sY + "-" + sM + "-" + sD + " " + sH + "." + sMM + "." + sS;
+		if (dtf == dtfYMDhm) return sY + "-" + sM + "-" + sD + " " + sH + ":" + sMM;
+		return sY + "-" + sM + "-" + sD + " " + sH + ":" + sMM + ":" + sS;
 	}
 	long DateTime::getRawDateTime() {
 		return rawDateTime;

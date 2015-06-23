@@ -1,13 +1,13 @@
 #pragma once
 
 namespace cj {
-/*
+
 #define LOGGER_TRACE_FLAG 1
 #define LOGGER_DEBUG_FLAG 1
 #define LOGGER_INFO_FLAG 1
 #define LOGGER_ERROR_FLAG 1
 #define LOGGER_OUT_FLAG 1
-*/
+
 
 #ifdef LOGGER_TRACE_FLAG
 #define LOGGER_TRACE(s) application->logger_out("TRACE", s)
