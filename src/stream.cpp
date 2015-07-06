@@ -254,7 +254,6 @@ void Memory::setSize(int value) {
 }
 
 
-
 //--------------------------------------------------------------------------------------------------
 //----------          class File          ----------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
@@ -386,7 +385,13 @@ int File::readAll(String &str) {
 	setPos(0);
 	int size = getSize();
 	char *memblock = new char[size + 1];
+
 	int result = fread(memblock, size, 1, f);
+	if (result != 1)
+	{
+		printf("Ошибка чтения\n");
+		exit(3);
+	}
 	memblock[size] = '\0';
 	str = memblock;
 	delete[] memblock;
