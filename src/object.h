@@ -19,6 +19,7 @@ namespace cj {
 #endif
 	ulong getUsageMemory();
 	void sendMail(String toEMail, String fromEMail, String subject, String message);
+	void sendMail_s(string toEMail, string fromEMail, string subject, string message);
 	String dtRus(String dtUsa, int format);
 
 	class Object {

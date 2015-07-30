@@ -89,6 +89,21 @@ namespace cj {
 #endif
 	}
 
+	void sendMail_s(string toEMail, string fromEMail, string subject, string message) {
+		if (toEMail == "") return;
+#ifdef OS_LINUX
+		string s = (String)"echo \"Content-Type: text/plain; charset=utf-8\nX-Mailer: Super Mailer\nTo: " + toEMail + "\nSubject: " + subject + "\n" + message + "\"|/usr/sbin/sendmail -f" + fromEMail + " " + toEMail;
+		//page->out("debug", (String)"sendMail: " + s);
+		//	FILE *f = popen("echo \"Subject: qqq002\nMessage here 002\"|sendmail -fvps_test@mail.ru vps_test@mail.ru", "w");
+		try {
+			FILE *f = popen(s.toString8().c_str(), "w");
+			if (f != NULL) pclose(f);
+		}
+		catch (...) {
+		}
+#endif
+	}
+
 	String dtRus(String dtUsa, int format) {
 		String y = dtUsa.subString(0, 4);
 		String m = dtUsa.subString(5, 2);
@@ -696,6 +711,8 @@ namespace cj {
 	}
 
 	String ParamList::getValue(String name) {
+		string v = pars[name.toString8()];
+		printf("getValue: %s = %s\n", name.toString8().c_str(), v.c_str());
 		return pars[name.toString8()];
 	}
 
