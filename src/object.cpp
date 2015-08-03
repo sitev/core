@@ -92,11 +92,9 @@ namespace cj {
 	void sendMail_s(string toEMail, string fromEMail, string subject, string message) {
 		if (toEMail == "") return;
 #ifdef OS_LINUX
-		string s = (String)"echo \"Content-Type: text/plain; charset=utf-8\nX-Mailer: Super Mailer\nTo: " + toEMail + "\nSubject: " + subject + "\n" + message + "\"|/usr/sbin/sendmail -f" + fromEMail + " " + toEMail;
-		//page->out("debug", (String)"sendMail: " + s);
-		//	FILE *f = popen("echo \"Subject: qqq002\nMessage here 002\"|sendmail -fvps_test@mail.ru vps_test@mail.ru", "w");
+		string s = "echo \"Content-Type: text/plain; charset=utf-8\nX-Mailer: Super Mailer\nTo: " + toEMail + "\nSubject: " + subject + "\n" + message + "\"|/usr/sbin/sendmail -f" + fromEMail + " " + toEMail;
 		try {
-			FILE *f = popen(s.toString8().c_str(), "w");
+			FILE *f = popen(s.c_str(), "w");
 			if (f != NULL) pclose(f);
 		}
 		catch (...) {
