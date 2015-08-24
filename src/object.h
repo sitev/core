@@ -56,7 +56,7 @@ namespace cj {
 	{
 		u32string s;
 	public:
-		string s8;
+		//string s8;
 		String();
 		String(const String& value);
 		String(String& value);

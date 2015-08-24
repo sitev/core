@@ -178,37 +178,40 @@ namespace cj {
 
 
 	String::String() {
-		s8 = this->toString8();
+//		s8 = this->toString8();
 	}
 	String::String(const String& value) {
 		String v(value);
-		s8 = this->toString8();
+//		s8 = this->toString8();
 	}
 	String::String(String& value) {
 		s = value.s;
-		s8 = this->toString8();
+//		s8 = this->toString8();
 	}
 	String::String(string value) {
+		/*
 #ifdef OS_WINDOWS
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
 #endif
 
 #ifdef OS_LINUX
+		*/
 		s = boost::locale::conv::utf_to_utf<char32_t>(value);
-#endif
+//#endif
 
-		s8 = this->toString8();
+//		s8 = this->toString8();
 	}
 	String::String(u32string value) {
 		s = value;
-		s8 = this->toString8();
+//		s8 = this->toString8();
 	}
 	String::String(char32_t value) {
 		s = value;
-		s8 = this->toString8();
+//		s8 = this->toString8();
 	}
 	String::String(const char *value) {
+		/*
 #ifdef OS_WINDOWS
 		Convert32 convert32;
 		string s8 = value;
@@ -216,12 +219,14 @@ namespace cj {
 #endif
 
 #ifdef OS_LINUX
+		*/
 	    s = boost::locale::conv::utf_to_utf<char32_t>(value);
-#endif
+//#endif
 
-		s8 = this->toString8();
+//		s8 = this->toString8();
 	}
 	string String::toString8() {
+		/*
 #ifdef OS_WINDOWS
 		Convert32 convert32;
 		string s8 = convert32.to_bytes(s);
@@ -229,54 +234,61 @@ namespace cj {
 #endif
 
 #ifdef OS_LINUX
+		*/
 		string s8 = boost::locale::conv::utf_to_utf<char>(s);
 		return s8;
-#endif
+//#endif
 	}
 	String::String(char *value) {
-		
+		/*
 #ifdef OS_WINDOWS
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
 #endif
 
 #ifdef OS_LINUX
+		*/
 	s = boost::locale::conv::utf_to_utf<char32_t>(value);
-#endif
-		s8 = this->toString8();
+//#endif
+//		s8 = this->toString8();
 	}
 	String::String(char value) {
 		char mys[2];
 		mys[0] = value;
 		mys[1] = 0;
+		/*
 #ifdef OS_WINDOWS
 		Convert32 convert32;
 		s = convert32.from_bytes(mys);
 #endif
 
 #ifdef OS_LINUX
+		*/
 	s = boost::locale::conv::utf_to_utf<char32_t>(mys);
-#endif
-		s8 = this->toString8();
+//#endif
+//		s8 = this->toString8();
 	}
 	String::String(int value) {
+		/*
 #ifdef OS_WINDOWS
 		Convert32 convert32;
 		s = convert32.from_bytes(to_string(value));
 #endif
 
 #ifdef OS_LINUX
+		*/
 		char values8[20];
 		sprintf(values8, "%d", value);
 		s = boost::locale::conv::utf_to_utf<char32_t>(values8);
-#endif
-		s8 = this->toString8();
+//#endif
+//		s8 = this->toString8();
 	}
 	String::String(real value) {
 		fromFloat(value, 10);
-		s8 = this->toString8();
+//		s8 = this->toString8();
 	}
 	String::String(bool value) {
+		/*
 #ifdef OS_WINDOWS
 		Convert32 convert32;
 		if (value) s = convert32.from_bytes("1");
@@ -284,10 +296,11 @@ namespace cj {
 #endif
 
 #ifdef OS_LINUX
+		*/
 		if (value) s = boost::locale::conv::utf_to_utf<char32_t>("1");
 		else s = boost::locale::conv::utf_to_utf<char32_t>("0");
-#endif
-		s8 = this->toString8();
+//#endif
+//		s8 = this->toString8();
 	}
 	String::~String() {
 	}
@@ -313,7 +326,7 @@ namespace cj {
 	}
 	String& String::operator=(const String& value) {
 		s = value.s;
-		s8 = this->toString8();
+//		s8 = this->toString8();
 		return *this;
 	}
 	String String::operator+(String value) {
@@ -329,7 +342,7 @@ namespace cj {
 	String String::operator+=(String value) {
 		u32string u32 = s += value.s;
 		String str(u32);
-		s8 = str.toString8();
+//		s8 = str.toString8();
 		return str;
 	}
 	bool String::operator==(String value) {
@@ -403,7 +416,8 @@ namespace cj {
 	int String::toInt() {
 		//s8 = "123";
 		//int a = stoi(s8);
-		int a = strtol(s8.c_str(), NULL, 0);
+		String t = s;
+		int a = strtol(t.toString8().c_str(), NULL, 0);
 		return a;
 	}
 	real String::toFloat() {
