@@ -81,7 +81,7 @@ namespace cj {
 		//page->out("debug", (String)"sendMail: " + s);
 		//	FILE *f = popen("echo \"Subject: qqq002\nMessage here 002\"|sendmail -fvps_test@mail.ru vps_test@mail.ru", "w");
 		try {
-			FILE *f = popen(s.toString8().c_str(), "w");
+			FILE *f = popen(s.to_string().c_str(), "w");
 			if (f != NULL) pclose(f);
 		}
 		catch (...) {
@@ -119,7 +119,7 @@ namespace cj {
 #ifdef OS_WINDOWS
 	void showMessage(String msg)
 	{
-///		::MessageBox(NULL, msg.toString8().c_str(), "Message", MB_OK);
+///		::MessageBox(NULL, msg.to_string().c_str(), "Message", MB_OK);
 	}
 #endif
 	real random() {
@@ -178,15 +178,15 @@ namespace cj {
 
 
 	String::String() {
-//		s8 = this->toString8();
+//		s8 = this->to_string();
 	}
 	String::String(const String& value) {
 		String v(value);
-//		s8 = this->toString8();
+//		s8 = this->to_string();
 	}
 	String::String(String& value) {
 		s = value.s;
-//		s8 = this->toString8();
+//		s8 = this->to_string();
 	}
 	String::String(string value) {
 		/*
@@ -200,15 +200,15 @@ namespace cj {
 		s = boost::locale::conv::utf_to_utf<char32_t>(value);
 //#endif
 
-//		s8 = this->toString8();
+//		s8 = this->to_string();
 	}
 	String::String(u32string value) {
 		s = value;
-//		s8 = this->toString8();
+//		s8 = this->to_string();
 	}
 	String::String(char32_t value) {
 		s = value;
-//		s8 = this->toString8();
+//		s8 = this->to_string();
 	}
 	String::String(const char *value) {
 		/*
@@ -223,9 +223,9 @@ namespace cj {
 	    s = boost::locale::conv::utf_to_utf<char32_t>(value);
 //#endif
 
-//		s8 = this->toString8();
+//		s8 = this->to_string();
 	}
-	string String::toString8() {
+	string String::to_string() {
 		/*
 #ifdef OS_WINDOWS
 		Convert32 convert32;
@@ -250,7 +250,7 @@ namespace cj {
 		*/
 	s = boost::locale::conv::utf_to_utf<char32_t>(value);
 //#endif
-//		s8 = this->toString8();
+//		s8 = this->to_string();
 	}
 	String::String(char value) {
 		char mys[2];
@@ -266,7 +266,7 @@ namespace cj {
 		*/
 	s = boost::locale::conv::utf_to_utf<char32_t>(mys);
 //#endif
-//		s8 = this->toString8();
+//		s8 = this->to_string();
 	}
 	String::String(int value) {
 		/*
@@ -281,11 +281,11 @@ namespace cj {
 		sprintf(values8, "%d", value);
 		s = boost::locale::conv::utf_to_utf<char32_t>(values8);
 //#endif
-//		s8 = this->toString8();
+//		s8 = this->to_string();
 	}
 	String::String(real value) {
 		fromFloat(value, 10);
-//		s8 = this->toString8();
+//		s8 = this->to_string();
 	}
 	String::String(bool value) {
 		/*
@@ -300,7 +300,7 @@ namespace cj {
 		if (value) s = boost::locale::conv::utf_to_utf<char32_t>("1");
 		else s = boost::locale::conv::utf_to_utf<char32_t>("0");
 //#endif
-//		s8 = this->toString8();
+//		s8 = this->to_string();
 	}
 	String::~String() {
 	}
@@ -326,7 +326,7 @@ namespace cj {
 	}
 	String& String::operator=(const String& value) {
 		s = value.s;
-//		s8 = this->toString8();
+//		s8 = this->to_string();
 		return *this;
 	}
 	String String::operator+(String value) {
@@ -342,7 +342,7 @@ namespace cj {
 	String String::operator+=(String value) {
 		u32string u32 = s += value.s;
 		String str(u32);
-//		s8 = str.toString8();
+//		s8 = str.to_string();
 		return str;
 	}
 	bool String::operator==(String value) {
@@ -375,12 +375,12 @@ namespace cj {
 		try {
 			u32string u = s.substr(pos, count);
 			s32 = u;
-			string s8 = s32.toString8();
+			string s8 = s32.to_string();
 		}
 		catch (...) {
 			u32string u = s.substr(pos, count);
 			s32 = u;
-			string s8 = s32.toString8();
+			string s8 = s32.to_string();
 		}
 		return s32;
 	}
@@ -390,7 +390,7 @@ namespace cj {
 		String s32;
 		u32string u = s.substr(pos);
 		s32 = u;
-		string s8 = s32.toString8();
+		string s8 = s32.to_string();
 		return s32;
 	}
 	int String::getPos(String str) {
@@ -417,7 +417,7 @@ namespace cj {
 		//s8 = "123";
 		//int a = stoi(s8);
 		String t = s;
-		int a = strtol(t.toString8().c_str(), NULL, 0);
+		int a = strtol(t.to_string().c_str(), NULL, 0);
 		return a;
 	}
 	real String::toFloat() {
@@ -705,11 +705,11 @@ namespace cj {
 	}
 
 	void ParamList::add(String name, String value) {
-		pars.insert(std::pair<string, string>(name.toString8(), value.toString8()));
+		pars.insert(std::pair<string, string>(name.to_string(), value.to_string()));
 	}
 
 	void ParamList::insert(String name, String value) {
-		pars.insert(std::pair<string, string>(name.toString8(), value.toString8()));
+		pars.insert(std::pair<string, string>(name.to_string(), value.to_string()));
 	}
 
 	void ParamList::clear() {
@@ -723,9 +723,9 @@ namespace cj {
 	}
 
 	String ParamList::getValue(String name) {
-		string v = pars[name.toString8()];
-		printf("getValue: %s = %s\n", name.toString8().c_str(), v.c_str());
-		return pars[name.toString8()];
+		string v = pars[name.to_string()];
+		printf("getValue: %s = %s\n", name.to_string().c_str(), v.c_str());
+		return pars[name.to_string()];
 	}
 
 	String ParamList::getName(int index) {

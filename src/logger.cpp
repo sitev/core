@@ -38,8 +38,8 @@ void Logger::out(String flag, String s) {
 	char st[31];
 	strftime(st, sizeof(st), "%d.%m.%y %H:%M:%S", localtime(&t));
 
-	FILE *f = fopen(fileName.toString8().c_str(), "a");
-	fprintf(f, "[%s] %s %s\n", st, flag.toString8().c_str(), s.toString8().c_str());
+	FILE *f = fopen(fileName.to_string().c_str(), "a");
+	fprintf(f, "[%s] %s %s\n", st, flag.to_string().c_str(), s.to_string().c_str());
 	fclose(f);
 #endif
 

@@ -96,7 +96,7 @@ namespace cj {
 		virtual int getPos(String str);
 		virtual int getPosBack(String str);
 
-		virtual string toString8();
+		virtual string to_string();
 		virtual int toInt();
 		virtual real toFloat();
 		virtual String upperCase();

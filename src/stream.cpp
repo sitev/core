@@ -169,7 +169,7 @@ int Stream::writeString(String value) {
 	writeInt(size);
 	for (int i = 0; i < size; i++)
 	{
-		char ch = value.toString8().c_str()[i];
+		char ch = value.to_string().c_str()[i];
 		write(&ch, 1);
 	}
 	return 0;
@@ -258,12 +258,12 @@ void Memory::setSize(int value) {
 //----------          class File          ----------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
 File::File(String fileName, String mode) {
-	this->fileName = fileName.toString8();
-	this->mode = mode.toString8();
+	this->fileName = fileName.to_string();
+	this->mode = mode.to_string();
 	open();
 }
 File::File(String fileName) {
-	this->fileName = fileName.toString8();
+	this->fileName = fileName.to_string();
 	mode = "wb";
 	if (!open()) {
 		createNullFile(fileName);
@@ -412,7 +412,7 @@ int File::write(void *buffer, int count) {
 }
 int File::write(String str) {
 	int len = str.getLength();
-	return write((void*)str.toString8().c_str(), len);
+	return write((void*)str.to_string().c_str(), len);
 }
 void File::save() {
 	int pos = getPos();
@@ -429,13 +429,13 @@ void File::createDir(String dirName) {
 		if (pos < 0) pos = dirName.getPos("/");
 		if (pos < 0) break;
 		s += dirName.subString(0, pos);
-		string s8 = s.toString8();
+		string s8 = s.to_string();
 		dirName = dirName.subString(pos + 1, dirName.getLength());
 		String ss = s.subString(s.getLength() - 1, 1);
 		s += "\\";
 		if (ss == ":") continue;
 #ifdef OS_WINDOWS
-		CreateDirectory(s.toString8().c_str(), NULL);
+		CreateDirectory(s.to_string().c_str(), NULL);
 #endif
 #ifdef OS_LINUX
 
@@ -471,7 +471,7 @@ void File::createNullFile(String fileName) {
 	//	HFILE f = _lcreat(fileName.toChars(), 0);
 	//	_lclose(f);
 	FILE *ff;
-	ff = fopen(fileName.toString8().c_str(), "w");
+	ff = fopen(fileName.to_string().c_str(), "w");
 	fclose(ff);
 }
 void File::createNullFile(string fileName) {
