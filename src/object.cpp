@@ -18,6 +18,7 @@ namespace cj {
 		A = B;
 		B = S;
 	}
+
 	String generateUUID() {
 #ifdef OS_WINDOWS
 		char* str = new char[39];
