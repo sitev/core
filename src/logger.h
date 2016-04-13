@@ -60,6 +60,7 @@ public:
 
 	virtual void out(String s);
 	virtual void out(String flag, String s);
+	virtual void out(String flag, string s);
 };
 
 }

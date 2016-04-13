@@ -43,7 +43,12 @@ namespace cj {
 	}
 
 #ifdef OS_WINDOWS
+	static int usleep_cnt = 0;
 	void usleep(big usec) {
+		Sleep(usec / 1000);
+		//if (usleep_cnt % 10 == 0) Sleep(usec / 1000);
+		usleep_cnt++;
+		/*
 			HANDLE timer;
 			LARGE_INTEGER ft;
 
@@ -53,6 +58,7 @@ namespace cj {
 			SetWaitableTimer(timer, &ft, 0, NULL, NULL, 0);
 			WaitForSingleObject(timer, INFINITE);
 			CloseHandle(timer);
+			*/
 	}
 #endif
 
@@ -190,16 +196,16 @@ namespace cj {
 //		s8 = this->to_string();
 	}
 	String::String(string value) {
-		/*
+		
 #ifdef OS_WINDOWS
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
 #endif
 
 #ifdef OS_LINUX
-		*/
+		
 		s = boost::locale::conv::utf_to_utf<char32_t>(value);
-//#endif
+#endif
 
 //		s8 = this->to_string();
 	}
@@ -212,7 +218,7 @@ namespace cj {
 //		s8 = this->to_string();
 	}
 	String::String(const char *value) {
-		/*
+		
 #ifdef OS_WINDOWS
 		Convert32 convert32;
 		string s8 = value;
@@ -220,14 +226,14 @@ namespace cj {
 #endif
 
 #ifdef OS_LINUX
-		*/
+		
 	    s = boost::locale::conv::utf_to_utf<char32_t>(value);
-//#endif
+#endif
 
 //		s8 = this->to_string();
 	}
 	string String::to_string() {
-		/*
+		
 #ifdef OS_WINDOWS
 		Convert32 convert32;
 		string s8 = convert32.to_bytes(s);
@@ -235,53 +241,53 @@ namespace cj {
 #endif
 
 #ifdef OS_LINUX
-		*/
+		
 		string s8 = boost::locale::conv::utf_to_utf<char>(s);
 		return s8;
-//#endif
+#endif
 	}
 	String::String(char *value) {
-		/*
+		
 #ifdef OS_WINDOWS
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
 #endif
 
 #ifdef OS_LINUX
-		*/
+		
 	s = boost::locale::conv::utf_to_utf<char32_t>(value);
-//#endif
+#endif
 //		s8 = this->to_string();
 	}
 	String::String(char value) {
 		char mys[2];
 		mys[0] = value;
 		mys[1] = 0;
-		/*
+		
 #ifdef OS_WINDOWS
 		Convert32 convert32;
 		s = convert32.from_bytes(mys);
 #endif
 
 #ifdef OS_LINUX
-		*/
+		
 	s = boost::locale::conv::utf_to_utf<char32_t>(mys);
-//#endif
+#endif
 //		s8 = this->to_string();
 	}
 	String::String(int value) {
-		/*
+		
 #ifdef OS_WINDOWS
 		Convert32 convert32;
-		s = convert32.from_bytes(to_string(value));
+		s = convert32.from_bytes(::to_string(value));
 #endif
 
 #ifdef OS_LINUX
-		*/
+		
 		char values8[20];
 		sprintf(values8, "%d", value);
 		s = boost::locale::conv::utf_to_utf<char32_t>(values8);
-//#endif
+#endif
 //		s8 = this->to_string();
 	}
 	String::String(real value) {
@@ -289,7 +295,7 @@ namespace cj {
 //		s8 = this->to_string();
 	}
 	String::String(bool value) {
-		/*
+		
 #ifdef OS_WINDOWS
 		Convert32 convert32;
 		if (value) s = convert32.from_bytes("1");
@@ -297,10 +303,10 @@ namespace cj {
 #endif
 
 #ifdef OS_LINUX
-		*/
+		
 		if (value) s = boost::locale::conv::utf_to_utf<char32_t>("1");
 		else s = boost::locale::conv::utf_to_utf<char32_t>("0");
-//#endif
+#endif
 //		s8 = this->to_string();
 	}
 	String::~String() {

@@ -68,7 +68,7 @@ public:
 class Memory : public Stream
 {
 public:
-	void *data;
+	char *data=NULL;
 	Memory();
 	virtual ~Memory();
 	virtual int read(void *buffer, int count);

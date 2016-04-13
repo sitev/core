@@ -68,10 +68,10 @@
 using namespace std;
 
 #ifdef OS_WINDOWS
-//#include <codecvt>
+#include <codecvt>
 
-//typedef std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> Convert16;
-//typedef std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> Convert32;
+typedef std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> Convert16;
+typedef std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> Convert32;
 
 #include <iomanip>
 #include <ctime>
@@ -80,7 +80,7 @@ using namespace std;
 //#ifdef OS_LINUX
 //#include <uchar.h>
 //typedef basic_string<char32_t> u32string;
-#include <boost/locale.hpp>
+//#include <boost/locale.hpp>
 #pragma comment(lib, "ws2_32.lib")
 
 //#endif

@@ -1,5 +1,12 @@
 #include "cj.h"
 
+#include <stdio.h>
+#include <io.h>
+#include <fcntl.h>
+#include <sys\types.h>
+#include <sys/stat.h>
+#include <share.h>
+
 namespace cj {
 
 //--------------------------------------------------------------------------------------------------
@@ -69,6 +76,15 @@ int Stream::readUChar(uchar &value) {
 	return 0;
 }
 int Stream::writeUChar(uchar value) {
+	/*
+	static int iii = 0;
+	iii++;
+	printf("{%d} ", iii);
+	if (iii == 13) {
+		int a = 1;
+		//return;
+	}
+	*/
 	write(&value, sizeof(uchar));
 	return 0;
 }
@@ -198,18 +214,46 @@ int Stream::writeReal(real value) {
 //----------          class Memory          --------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
 Memory::Memory() {
-	data = NULL;
+	data = new char [10000];
+	/*
+	char v[11];
+	sprintf(v, "m%d ", data);
+	
+	int f = _sopen("c:/var/log/mem.log", _O_APPEND | _O_CREAT | _O_RDWR, _SH_DENYNO, _S_IWRITE);
+	_write(f, v, strlen(v));
+	_close(f);
+	*/
 	setPos(0);
 	setSize(0);
 }
+
+mutex g_mutex9;
+
 Memory::~Memory() {
-	/*
 	if (data != NULL) {
+
+		//g_mutex9.lock();
+		//realloc(data, 1);
+		/*
+		char v[11];
+		sprintf(v, "d%d \n", data);
+
+		int f = _sopen("c:/var/log/mem.log", _O_APPEND | _O_CREAT | _O_RDWR, _SH_DENYNO, _S_IWRITE);
+		_write(f, v, strlen(v));
+		_close(f);
+		*/
+
+		//free(data);
+		try {
+			//delete[] data;
+		}
+		catch (...) {
+			int a = 1;
+		}
 		size = 0;
-		free(data);
 		data = NULL;
+		//g_mutex9.unlock();
 	}
-	*/
 }
 
 int Memory::read(void *buffer, int count) {
@@ -223,9 +267,11 @@ int Memory::read(void *buffer, int count) {
 	return count;
 }
 int Memory::write(void *buffer, int count) {
-//	if (data == NULL) return 0;
+	//if (data == NULL) return 0;
+	if (buffer == NULL) return 0;
 	if (count <= 0) return 0;
-	setSize(size + count);
+	//setSize(size + count);
+	if (pos + count > size)	setSize(pos + count);
 	char *aData = (char*)data;
 	aData += pos;
 	if (buffer == NULL) memset(aData, 0, count);
@@ -241,16 +287,12 @@ void Memory::set(Stream *source, int size) {
 	write(((Memory*)source)->data, source->getSize());
 }
 void Memory::setSize(int value) {
+	if (value < 0) {
+		int a = 1;
+		return;
+	}
 	size = value;
-	try {
-		data = realloc(data, value);
-	}
-	catch(...) {
-		printf("Memory: error realloc\n");
-		data = NULL;
-		size = 0;
-	}
-
+	///data = realloc(data, value);
 }
 
 
