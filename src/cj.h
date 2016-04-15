@@ -30,6 +30,7 @@
 #include <fstream>
 #include <map>
 #include <mutex>
+#include <functional>
 
 #ifdef OS_LINUX
 #include <sys/resource.h>
