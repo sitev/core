@@ -61,7 +61,8 @@ void Logger::out(String flag, String s) {
 	tv2 = tv;
 
 	FILE *f = fopen(fileName.to_string().c_str(), "a");
-	fprintf(f, "%s %d %d %d %s: %s\n", dt.toString(dtfDatabase).to_string().c_str(), tv.tv_sec, tv.tv_usec, delta, flag.to_string().c_str(), s.to_string().c_str());
+	string s1 = dt.toString(dtfDatabase).to_string();
+	fprintf(f, "%s %d %d %d %s: %s\n", s1.c_str(), tv.tv_sec, tv.tv_usec, delta, flag.to_string().c_str(), s.to_string().c_str());
 	fclose(f);
 #endif
 	application->mutexLogger.unlock();
@@ -99,7 +100,12 @@ void Logger::out(String flag, string s) {
 	tv2 = tv;
 
 	FILE *f = fopen(fileName.to_string().c_str(), "a");
-	fprintf(f, "%s %d %d %d %s: %s\n", dt.toString(dtfDatabase).to_string().c_str(), tv.tv_sec, tv.tv_usec, delta, flag.to_string().c_str(), s.to_string().c_str());
+	string s1 = dt.toString(dtfDatabase).to_string();
+	string s2 = flag.to_string();
+	fprintf(f, "%s ", s1.c_str());
+	fprintf(f, "%d %d %d ", (int)tv.tv_sec, (int)tv.tv_usec, delta);
+	fprintf(f, "%s: ", s2.c_str());
+	fprintf(f, "%s\n", s.c_str());
 	fclose(f);
 #endif
 	application->mutexLogger.unlock();

@@ -17,6 +17,9 @@ namespace cj {
 #ifdef OS_WINDOWS
 	void usleep(big usec);
 #endif
+#ifdef OS_LINUX
+	ulong GetTickCount();
+#endif
 	ulong getUsageMemory();
 	void sendMail(String toEMail, String fromEMail, String subject, String message);
 	void sendMail_s(string toEMail, string fromEMail, string subject, string message);

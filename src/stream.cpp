@@ -1,11 +1,14 @@
 #include "cj.h"
 
 #include <stdio.h>
-#include <io.h>
 #include <fcntl.h>
-#include <sys\types.h>
+#include <sys/types.h>
 #include <sys/stat.h>
+
+#ifdef OS_WINDOWS
+#include <io.h>
 #include <share.h>
+#endif
 
 namespace cj {
 

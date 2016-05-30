@@ -61,6 +61,14 @@ namespace cj {
 			*/
 	}
 #endif
+#ifdef OS_LINUX
+	ulong GetTickCount() {
+		struct timeval tv; 
+		gettimeofday(&tv,NULL); 
+		return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	}
+#endif
+
 
 	ulong getUsageMemory()
 	{
