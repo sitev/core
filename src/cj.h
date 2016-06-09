@@ -92,6 +92,7 @@ typedef basic_string<char32_t> u32string;
 #include "object.h"
 #include "stream.h"
 #include "logger.h"
+#include "config.h"
 
 #include "application.h"
 
