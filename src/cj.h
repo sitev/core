@@ -45,6 +45,9 @@
 #include <stdio.h>
 #endif
 
+#ifdef _MSC_VER
+#endif
+
 #ifdef OS_WINDOWS
 #include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")
@@ -68,7 +71,7 @@
 
 using namespace std;
 
-#ifdef OS_WINDOWS
+#ifdef OS_WINDOWS && _MSC_VER == 1800
 #include <codecvt>
 
 typedef std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> Convert16;
@@ -78,7 +81,7 @@ typedef std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> Convert32;
 #include <ctime>
 #endif
 
-#ifdef OS_LINUX
+#ifdef OS_LINUX || OS_WINDOWS && _MSC_VER == 1900
 #include <uchar.h>
 typedef basic_string<char32_t> u32string;
 #include <boost/locale.hpp>
@@ -93,6 +96,7 @@ typedef basic_string<char32_t> u32string;
 #include "stream.h"
 #include "logger.h"
 #include "config.h"
+#include "xmlParser.h"
 
 #include "application.h"
 

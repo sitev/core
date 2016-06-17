@@ -16,6 +16,7 @@
     <ClCompile Include="..\..\src\logger.cpp" />
     <ClCompile Include="..\..\src\object.cpp" />
     <ClCompile Include="..\..\src\stream.cpp" />
+    <ClCompile Include="..\..\src\xmlParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\application.h" />
@@ -25,6 +26,7 @@
     <ClInclude Include="..\..\src\object.h" />
     <ClInclude Include="..\..\src\stream.h" />
     <ClInclude Include="..\..\src\types.h" />
+    <ClInclude Include="..\..\src\xmlParser.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{95C32FB2-32DC-45FF-B513-7E117514D8CA}</ProjectGuid>
