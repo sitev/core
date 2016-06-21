@@ -739,7 +739,7 @@ namespace cj {
 
 	String ParamList::getValue(String name) {
 		string v = pars[name.to_string()];
-		printf("getValue: %s = %s\n", name.to_string().c_str(), v.c_str());
+		//printf("getValue: %s = %s\n", name.to_string().c_str(), v.c_str());
 		return pars[name.to_string()];
 	}
 
