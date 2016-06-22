@@ -16,6 +16,10 @@ bool Config::loadFromFile(String fileName) {
 	while (!f->eof()) {
 		String s;
 		f->readLine(s);
+		string ss = s.to_string();
+		s = s.allTrim();
+		if (s == "") 
+			continue;
 		bool flag = parse(s);
 		if (!flag) return false;
 	}

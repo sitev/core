@@ -411,19 +411,15 @@ void File::setPos(int value) {
 int File::read(void *buffer, int count) {
 	return fread(buffer, count, 1, f);
 }
-int File::readLine(String &str) {
-	str = "";
-	char ch;
-	while(1)
-	{
+int File::readLine(String &s) {
+	s = "";
+	while (true) {
+		char ch;
 		read(&ch, 1);
-		//    if (ch == '\n' || ch == '\r') return str.getLength();
-		if (ch == '\r') return str.getLength();
-		if (ch != '\n') str = str + ch;
-		if (eof())
-		{
-			return str.getLength();
-		}
+		if (ch == '\r') continue;
+		if (ch == '\n') return s.getLength();
+		s = s + ch;
+		if (eof()) return s.getLength();
 	}
 }
 int File::readAll(String &str) {

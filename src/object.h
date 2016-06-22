@@ -106,6 +106,7 @@ namespace cj {
 		virtual String lowerCase();
 		virtual String firstUpperCase();
 		virtual String firstLowerCase();
+		virtual String allTrim();
 		virtual void fromFloat(real value, int digit);
 	};
 

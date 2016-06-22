@@ -479,6 +479,16 @@ namespace cj {
 		}
 		return s;
 	}
+	String String::allTrim() {
+		String s = "";
+		string ss = this->to_string();
+		int count = getLength();
+		for (int i = 0; i < count; i++) {
+			Char ch = getChar(i);
+			if (ch != 32) s += ch.get();
+		}
+		return s;
+	}
 	void String::fromFloat(real value, int digit) {
 	}
 
