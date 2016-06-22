@@ -416,8 +416,8 @@ int File::readLine(String &s) {
 	while (true) {
 		char ch;
 		read(&ch, 1);
-		if (ch == '\r') continue;
-		if (ch == '\n') return s.getLength();
+		if (ch == 13) continue;
+		if (ch == 10) return s.getLength();
 		s = s + ch;
 		if (eof()) return s.getLength();
 	}
