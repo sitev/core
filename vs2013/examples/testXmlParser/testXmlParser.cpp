@@ -21,21 +21,21 @@ int main()
 	xmlParser->setString(xml);
 	xmlParser->parse();
 
-	int count = xmlParser->lstNode.getCount();
+	int count = xmlParser->lstTag.getCount();
 
 	for (int i = 0; i < count; i++) {
-		XmlNode *xmlNode = (XmlNode*)xmlParser->lstNode.getItem(i);
-		printf("name = %s\n", xmlNode->name.to_string().c_str());
+		XmlTag *xmlTag = (XmlTag*)xmlParser->lstTag.getItem(i);
+		printf("name = %s\n", xmlTag->name.to_string().c_str());
 
-		int count = xmlNode->lstNode.getCount();
+		int count = xmlTag->lstTag.getCount();
 		for (int i = 0; i < count; i++) {
-			XmlNode *xmlNode2 = (XmlNode*)xmlNode->lstNode.getItem(i);
-			printf("  name2 = %s\n", xmlNode2->name.to_string().c_str());
+			XmlTag *xmlTag2 = (XmlTag*)xmlTag->lstTag.getItem(i);
+			printf("  name2 = %s\n", xmlTag2->name.to_string().c_str());
 
-			int count = xmlNode2->params.getCount();
+			int count = xmlTag2->attrs.getCount();
 			for (int i = 0; i < count; i++) {
-				String name = xmlNode2->params.getName(i);
-				String value = xmlNode2->params.getValue(i);
+				String name = xmlTag2->attrs.getName(i);
+				String value = xmlTag2->attrs.getValue(i);
 				printf("    name = %s, value = %s\n", name.to_string().c_str(), value.to_string().c_str());
 			}
 

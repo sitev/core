@@ -51,7 +51,7 @@ namespace cj {
 		if (ch != '<') return -1;
 		pos++;
 
-		//get node name 
+		//get Tag name 
 		skipNull();
 		string name = "";
 		while (true) {
@@ -89,15 +89,15 @@ namespace cj {
 
 		skipNull();
 
-		//find sub nodes
+		//find sub Tags
 		while (true) {
-			int result = parseTag(xmlTag->lstNode);
+			int result = parseTag(xmlTag->lstTag);
 			if (result < 1) return result;
 		}
 
 	}
 
-	int XmlParser::parseAttrs(XmlTag *xmlNode) {
+	int XmlParser::parseAttrs(XmlTag *xmlTag) {
 		while (true) {
 			skipNull();
 
@@ -137,7 +137,7 @@ namespace cj {
 				pos++;
 			}
 
-			xmlNode->attrs.add(name, value);
+			xmlTag->attrs.add(name, value);
 		}
 
 		return 1;

@@ -6,7 +6,7 @@ namespace cj {
 	public:
 		String name;
 		ParamList attrs;
-		List lstNode;
+		List lstTag;
 		XmlTag();
 	};
 
@@ -23,7 +23,7 @@ namespace cj {
 		virtual bool isBukva(Char ch);
 		virtual int getChar(Char &ch);
 		virtual int parseTag(List &lstTag);
-		virtual int parseAttrs(XmlTag *xmlNode);
+		virtual int parseAttrs(XmlTag *xmlTag);
 		virtual void parse();
 	};
 
