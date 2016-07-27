@@ -2,152 +2,196 @@
 
 namespace cj {
 
-	XmlTag::XmlTag() {
+XmlTag::XmlTag() {
 
+}
+
+XmlParser::XmlParser() {
+
+}
+
+void XmlParser::setString(String xml) {
+	this->xml = xml;
+}
+
+bool XmlParser::isLetter(Char ch) {
+	char c = ch.get();
+	if (ch >= 'A' && ch <= 'Z' || ch >= 'a' && ch <= 'z') return true;
+	return false;
+}
+
+int XmlParser::getChar(Char &ch) {
+	ch = xml.getChar(pos);
+	return 1;
+}
+
+bool XmlParser::isNull(Char ch) {
+	if (ch <= 32) return true;
+	return false;
+}
+
+void XmlParser::skipNull() {
+	while (true) {
+		Char ch = xml.getChar(pos);
+		if (!isNull(ch)) return;
+		pos++;
+	}
+}
+
+
+int XmlParser::parseTag(XmlTag *owner) {
+	// return -1 : error
+	//         1 : ok
+	//		   2: завершающий тег
+
+	//find <
+	skipNull();
+	Char ch = xml.getChar(pos);
+	char c = ch.get();
+	if (ch != '<') return -1;
+	pos++;
+
+	//find /
+	skipNull();
+	ch = xml.getChar(pos);
+	c = ch.get();
+	if (ch == '/' && owner != NULL) {
+		pos++;
+		return 2;
 	}
 
-	XmlParser::XmlParser() {
-
+	//get Tag name 
+	skipNull();
+	String name = "";
+	while (true) {
+		Char ch = xml.getChar(pos);
+		if (!isLetter(ch)) break;
+		name += ch.get();
+		pos++;
 	}
+	printf("tag name = %s\n", name.to_string().c_str());
 
-	void XmlParser::setString(String xml) {
-		this->xml = xml;
+	if (name == "") return -1;
+
+	XmlTag *xmlTag = new XmlTag();
+	xmlTag->name = name;
+	//lstTag.add(xmlTag);
+	
+	if (owner == NULL) {
+		printf("owner == NULL\n");
+		lstTag.add(xmlTag);
 	}
-
-	bool XmlParser::isBukva(Char ch) {
-		char c = ch.get();
-		if (ch >= 'A' && ch <= 'Z' || ch >= 'a' && ch <= 'z') return true;
-		return false;
+	else {
+		printf("owner != NULL\n");
+		owner->lstTag.add(xmlTag);
 	}
+	skipNull();
 
-	int XmlParser::getChar(Char &ch) {
+	int result = parseAttrs(xmlTag);
+	if (result < 1) return result;
+
+	skipNull();
+
+	//find > or />
+	ch = xml.getChar(pos);
+	if (ch == '/') {
+		pos++;
 		ch = xml.getChar(pos);
-		return 1;
-	}
-
-	bool XmlParser::isNull(Char ch) {
-		if (ch <= 32) return true;
-		return false;
-	}
-
-	void XmlParser::skipNull() {
-		while (true) {
-			Char ch = xml.getChar(pos);
-			if (!isNull(ch)) return;
+		if (ch == '>') {
 			pos++;
+			return 1;
 		}
 	}
+	if (ch != '>') return -1;
+	pos++;
 
+	skipNull();
 
-	int XmlParser::parseTag(List &lstTag) {
-		// return -1 : error
-		//         0 : end
-		//         1 : ok
+	//find sub Tags
+	while (true) {
+		result = parseTag(xmlTag);
+		if (result < 1) return result;
+		if (result != 1) break;
+	}
+	if (result != 2) return result;
 
-		//find <
-		skipNull();
+	//Окончание тега
+	//get node name 
+	skipNull();
+	String name2 = "";
+	while (true) {
 		Char ch = xml.getChar(pos);
-		char c = ch.get();
-		if (ch != '<') return -1;
+		if (!isLetter(ch)) break;
+		name2 += ch.get();
 		pos++;
+	}
 
-		//get Tag name 
+	//printf("name2 = %s\n", name2);
+	if (name2 == NULL) return -1;
+	if (name != name2) return -1;
+
+	//find >
+	skipNull();
+	ch = xml.getChar(pos);
+	if (ch != '>') return -1;
+	pos++;
+
+	//printf("return 1;\n");
+	return 1;
+}
+
+int XmlParser::parseAttrs(XmlTag *xmlTag) {
+	while (true) {
 		skipNull();
+
 		string name = "";
 		while (true) {
 			Char ch = xml.getChar(pos);
-			if (!isBukva(ch)) break;
+			if (!isLetter(ch)) break;
 			name += ch.get();
 			pos++;
 		}
 
-		if (name == "") return -1;
+		if (name == "") return 1;
 
-		XmlTag *xmlTag = new XmlTag();
-		xmlTag->name = name;
-		lstTag.add(xmlTag);
-		
 		skipNull();
 
-		int result = parseAttrs(xmlTag);
+		Char ch;
+		int result = getChar(ch);
 		if (result < 1) return result;
-
-		skipNull();
-
-		//find > or />
-		ch = xml.getChar(pos);
-		if (ch == '/') {
-			pos++;
-			ch = xml.getChar(pos);
-			if (ch == '>') {
-				pos++;
-				return 1;
-			}
-		}
-		if (ch != '>') return -1;
+		if (ch != '=') return -1;
 		pos++;
 
-		skipNull();
+		result = getChar(ch);
+		if (result < 1) return result;
+		if (ch != '\"') return -1;
+		pos++;
 
-		//find sub Tags
+		string value = "";
 		while (true) {
-			int result = parseTag(xmlTag->lstTag);
-			if (result < 1) return result;
-		}
-
-	}
-
-	int XmlParser::parseAttrs(XmlTag *xmlTag) {
-		while (true) {
-			skipNull();
-
-			string name = "";
-			while (true) {
-				Char ch = xml.getChar(pos);
-				if (!isBukva(ch)) break;
-				name += ch.get();
-				pos++;
-			}
-
-			if (name == "") return 1;
-
-			skipNull();
-
 			Char ch;
 			int result = getChar(ch);
 			if (result < 1) return result;
-			if (ch != '=') return -1;
-			pos++;
-
-			result = getChar(ch);
-			if (result < 1) return result;
-			if (ch != '\"') return -1;
-			pos++;
-
-			string value = "";
-			while (true) {
-				Char ch;
-				int result = getChar(ch);
-				if (result < 1) return result;
-				if (ch == '\"') {
-					pos++;
-					break;
-				}
-				value += ch.get();
+			if (ch == '\"') {
 				pos++;
+				break;
 			}
-
-			xmlTag->attrs.add(name, value);
+			value += ch.get();
+			pos++;
 		}
 
-		return 1;
+		xmlTag->attrs.add(name, value);
 	}
 
-	void XmlParser::parse() {
-		lstTag.clear();
-		pos = 0;
+	return 1;
+}
 
-		parseTag(lstTag);
-	}
+bool XmlParser::parse() {
+	lstTag.clear();
+	pos = 0;
+
+	int result = parseTag(NULL);
+	return result == 1;
+}
 
 }

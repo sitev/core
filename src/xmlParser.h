@@ -20,11 +20,11 @@ namespace cj {
 
 		virtual bool isNull(Char ch);
 		virtual void skipNull();
-		virtual bool isBukva(Char ch);
+		virtual bool isLetter(Char ch);
 		virtual int getChar(Char &ch);
-		virtual int parseTag(List &lstTag);
+		virtual int parseTag(XmlTag *owner);
 		virtual int parseAttrs(XmlTag *xmlTag);
-		virtual void parse();
+		virtual bool parse();
 	};
 
 }
