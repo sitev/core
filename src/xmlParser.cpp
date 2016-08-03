@@ -127,7 +127,7 @@ int XmlParser::parseTag(XmlTag *owner) {
 	}
 
 	//printf("name2 = %s\n", name2);
-	if (name2 == NULL) return -1;
+    if (name2 == "") return -1;
 	if (name != name2) return -1;
 
 	//find >
