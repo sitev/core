@@ -97,6 +97,7 @@ typedef basic_string<char32_t> u32string;
 #include "logger.h"
 #include "config.h"
 #include "xmlParser.h"
+#include "registry.h"
 
 #include "application.h"
 

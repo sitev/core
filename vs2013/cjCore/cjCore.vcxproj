@@ -15,6 +15,7 @@
     <ClCompile Include="..\..\src\config.cpp" />
     <ClCompile Include="..\..\src\logger.cpp" />
     <ClCompile Include="..\..\src\object.cpp" />
+    <ClCompile Include="..\..\src\registry.cpp" />
     <ClCompile Include="..\..\src\stream.cpp" />
     <ClCompile Include="..\..\src\xmlParser.cpp" />
   </ItemGroup>
@@ -24,6 +25,7 @@
     <ClInclude Include="..\..\src\config.h" />
     <ClInclude Include="..\..\src\logger.h" />
     <ClInclude Include="..\..\src\object.h" />
+    <ClInclude Include="..\..\src\registry.h" />
     <ClInclude Include="..\..\src\stream.h" />
     <ClInclude Include="..\..\src\types.h" />
     <ClInclude Include="..\..\src\xmlParser.h" />

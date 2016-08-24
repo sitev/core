@@ -57,6 +57,7 @@ namespace cj {
 
 	class String : public Object
 	{
+	protected:
 		u32string s;
 	public:
 		//string s8;
