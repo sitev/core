@@ -42,6 +42,18 @@ namespace cj {
 #endif
 	}
 
+	String generateSimpleUUID() {
+#ifdef OS_WINDOWS
+		char* str = new char[39];
+		GUID guid;
+		HRESULT h = CoCreateGuid(&guid);
+
+		sprintf(str, "%08X%04X%04X%02X%02X%02X%02X%02X%02X%02X%02X", guid.Data1, guid.Data2, guid.Data3, guid.Data4[0], guid.Data4[1], guid.Data4[2], guid.Data4[3], guid.Data4[4], guid.Data4[5], guid.Data4[6], guid.Data4[7]);
+		return str;
+#endif
+
+	}
+
 #ifdef OS_WINDOWS
 	static int usleep_cnt = 0;
 	void usleep(big usec) {
@@ -253,6 +265,11 @@ namespace cj {
 		string s8 = boost::locale::conv::utf_to_utf<char>(s);
 		return s8;
 #endif
+	}
+	char* String::c_str() {
+		string s = this->to_string();
+		char* ss = (char*)s.c_str();
+		return ss;
 	}
 	String::String(char *value) {
 		

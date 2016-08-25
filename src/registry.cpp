@@ -11,15 +11,13 @@ void Registry::setRootKey(HKEY hkey) {
 }
 
 bool Registry::openKey(String key) {
-	HKEY hkey;
-	return RegOpenKeyEx(hRootKey, key.to_string().c_str(), 0, KEY_ALL_ACCESS, &hkey) == ERROR_SUCCESS;
+	return RegOpenKeyEx(hRootKey, key.to_string().c_str(), 0, KEY_ALL_ACCESS, &hCurKey) == ERROR_SUCCESS;
 }
 
 bool Registry::createKey(String key) {
-	HKEY hkey;
 	DWORD disposition;
 	return RegCreateKeyEx(hRootKey, key.to_string().c_str(), 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL,
-		&hkey, &disposition) == ERROR_SUCCESS;
+		&hCurKey, &disposition) == ERROR_SUCCESS;
 }
 
 bool Registry::deleteKey(String key) {
@@ -28,6 +26,19 @@ bool Registry::deleteKey(String key) {
 
 bool Registry::closeKey() {
 	return RegCloseKey(hRootKey) == ERROR_SUCCESS;
+}
+
+String Registry::getStringValue(String name) {
+	char *value = (char*)malloc(8192);
+	DWORD cbData;
+	if (RegQueryValueEx(hCurKey, name.to_string().c_str(), NULL, NULL, (LPBYTE)value, &cbData) == ERROR_SUCCESS)
+		return value;
+	return "";
+}
+
+bool Registry::setStringValue(String name, String value) {
+	return RegSetValueEx(hCurKey, name.to_string().c_str(), 0, REG_SZ, (const BYTE*)value.to_string().c_str(), 
+		value.getLength()) == ERROR_SUCCESS;
 }
 
 }

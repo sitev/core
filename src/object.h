@@ -14,6 +14,7 @@ namespace cj {
 	real random(); // 0..1
 	int random(int count); // 0..count-1
 	String generateUUID();
+	String generateSimpleUUID();
 #ifdef OS_WINDOWS
 	void usleep(big usec);
 #endif
@@ -101,6 +102,7 @@ namespace cj {
 		virtual int getPosBack(String str);
 
 		virtual string to_string();
+		virtual char* c_str();
 		virtual int toInt();
 		virtual real toFloat();
 		virtual String upperCase();
