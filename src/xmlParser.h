@@ -5,6 +5,7 @@ namespace cj {
 	class XmlTag : public Object {
 	public:
 		String name;
+		String value;
 		ParamList attrs;
 		List lstTag;
 		XmlTag();

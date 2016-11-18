@@ -35,6 +35,10 @@ void Application::logger_out(String flag, String s) {
 	if (logger != NULL) logger->out(flag, s);
 }
 
+void Application::logger_out8(String flag, string s) {
+	if (logger != NULL) logger->out(flag, s);
+}
+
 
 //--------------------------------------------------------------------------------------------------
 //----------          class WebApp          --------------------------------------------------------

@@ -21,6 +21,7 @@ public:
 	virtual void stop();
 	virtual void logger_out(String s);
 	virtual void logger_out(String flag, String s);
+	virtual void logger_out8(String flag, string s);
 };
 class DesktopApp : public Application {
 public:

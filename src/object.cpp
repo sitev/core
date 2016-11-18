@@ -2,7 +2,6 @@
 
 namespace cj {
 
-
 	int round(real value) {
 		return (int)(value + 0.5);
 	}
@@ -216,14 +215,12 @@ namespace cj {
 //		s8 = this->to_string();
 	}
 	String::String(string value) {
-		
 #ifdef OS_WINDOWS && _MSC_VER == 1800
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
 #endif
 
 #ifdef OS_LINUX || OS_WINDOWS && _MSC_VER == 1900
-		
 		s = boost::locale::conv::utf_to_utf<char32_t>(value);
 #endif
 
@@ -253,7 +250,6 @@ namespace cj {
 //		s8 = this->to_string();
 	}
 	string String::to_string() {
-		
 #ifdef OS_WINDOWS && _MSC_VER == 1800
 		Convert32 convert32;
 		string s8 = convert32.to_bytes(s);
@@ -261,11 +257,17 @@ namespace cj {
 #endif
 
 #ifdef OS_LINUX
-		
 		string s8 = boost::locale::conv::utf_to_utf<char>(s);
 		return s8;
 #endif
 	}
+
+	wstring String::to_wstring() {
+		string s8 = to_string();
+		wstring s16(s8.begin(), s8.end());
+		return s16;
+	}
+
 	char* String::c_str() {
 		string s = this->to_string();
 		char* ss = (char*)s.c_str();
@@ -401,6 +403,8 @@ namespace cj {
 	void String::setLength(int value) {
 	}
 	String String::subString(int pos, int count) {
+		return s.substr(pos, count);
+
 		if (pos < 0)
 			return "";
 		String s32;
@@ -417,6 +421,8 @@ namespace cj {
 		return s32;
 	}
 	String String::subString(int pos) {
+		return s.substr(pos);
+
 		if (pos < 0)
 			return "";
 		String s32;
@@ -444,6 +450,9 @@ namespace cj {
 			if (s == str) return i;
 		}
 		return -1;
+	}
+	size_t String::find(const String& str, size_t start) {
+		return s.find(str.s, start);
 	}
 	int String::toInt() {
 		//s8 = "123";
@@ -938,6 +947,9 @@ namespace cj {
 	}
 	long DateTime::getRawDateTime() {
 		return rawDateTime;
+	}
+	void DateTime::setRawDateTime(long rawDT) {
+		rawDateTime = rawDT;
 	}
 	long DateTime::getDifference(DateTime dt) {
 		return rawDateTime - dt.getRawDateTime();

@@ -37,8 +37,10 @@ namespace cj {
 
 #ifdef LOGGER_SCREEN_FLAG
 #define LOGGER_SCREEN(s) application->logger_out("SCREEN", s)
+#define LOGGER_SCREEN8(s) application->logger_out8("SCREEN", s)
 #else
 #define LOGGER_SCREEN_FLAG(s)
+#define LOGGER_SCREEN_FLAG8(s)
 #endif
 
 #ifdef LOGGER_OUT_FLAG

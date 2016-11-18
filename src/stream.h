@@ -81,7 +81,7 @@ public:
 class File : public Stream
 {
 protected:
-	FILE *f;
+	FILE *f = NULL;
 	virtual bool open();
 	string fileName;
 	string mode;
@@ -107,7 +107,7 @@ public:
 	virtual void save();
 
 	static void createDir(String dirName);
-	static void createDir(string dirName);
+	static bool createDir(string dirName);
 	static void createNullFile(String fileName);
 	static void createNullFile(string fileName);
 	static String getExtention(String fileName);

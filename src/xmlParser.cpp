@@ -69,7 +69,7 @@ int XmlParser::parseTag(XmlTag *owner) {
 		name += ch.get();
 		pos++;
 	}
-	printf("tag name = %s\n", name.to_string().c_str());
+	//printf("tag name = %s\n", name.to_string().c_str());
 
 	if (name == "") return -1;
 
@@ -78,11 +78,11 @@ int XmlParser::parseTag(XmlTag *owner) {
 	//lstTag.add(xmlTag);
 	
 	if (owner == NULL) {
-		printf("owner == NULL\n");
+		//printf("owner == NULL\n");
 		lstTag.add(xmlTag);
 	}
 	else {
-		printf("owner != NULL\n");
+		//printf("owner != NULL\n");
 		owner->lstTag.add(xmlTag);
 	}
 	skipNull();
@@ -110,10 +110,31 @@ int XmlParser::parseTag(XmlTag *owner) {
 	//find sub Tags
 	while (true) {
 		result = parseTag(xmlTag);
-		if (result < 1) return result;
+		//if (result < 1) return result;
 		if (result != 1) break;
 	}
-	if (result != 2) return result;
+
+	if (result != 2) {
+		xmlTag->value = "";
+		while (true) {
+			ch = xml.getChar(pos);
+			pos++;
+			if (ch == '<') {
+				//printf("value = %s\n", xmlTag->value.to_string().c_str());
+
+				//find /
+				skipNull();
+				ch = xml.getChar(pos);
+				c = ch.get();
+				if (ch == '/') {
+					pos++;
+					break;
+				}
+				else return -1;
+			}
+			xmlTag->value = xmlTag->value + ch.get();
+		}
+	}
 
 	//Окончание тега
 	//get node name 
@@ -122,12 +143,13 @@ int XmlParser::parseTag(XmlTag *owner) {
 	while (true) {
 		Char ch = xml.getChar(pos);
 		if (!isLetter(ch)) break;
-		name2 += ch.get();
+		name2 = name2 + ch.get();
 		pos++;
 	}
 
-	//printf("name2 = %s\n", name2);
-    if (name2 == "") return -1;
+	//printf("name = %s\n", name.to_string().c_str());
+	//printf("name2 = %s\n", name2.to_string().c_str());
+	if (name2 == "") return -1;
 	if (name != name2) return -1;
 
 	//find >

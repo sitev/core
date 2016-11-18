@@ -40,14 +40,6 @@
 #include <dirent.h>
 #endif
 
-#ifdef WIN32
-#define _WIN32_WINNT 0x0501
-#include <stdio.h>
-#endif
-
-#ifdef _MSC_VER
-#endif
-
 #ifdef OS_WINDOWS
 #include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")

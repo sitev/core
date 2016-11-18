@@ -67,8 +67,7 @@ int Stream::writeUInt(uint value) {
 	return 0;
 }
 int Stream::readChar(char &value) {
-	read(&value, sizeof(char));
-	return 0;
+	return read(&value, sizeof(char));
 }
 int Stream::writeChar(char value) {
 	write(&value, sizeof(char));
@@ -217,7 +216,7 @@ int Stream::writeReal(real value) {
 //----------          class Memory          --------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
 Memory::Memory() {
-	data = new char [10000];
+	data = NULL;// new char[10000];
 	/*
 	char v[11];
 	sprintf(v, "m%d ", data);
@@ -295,7 +294,7 @@ void Memory::setSize(int value) {
 		return;
 	}
 	size = value;
-	///data = realloc(data, value);
+	data = (char*)realloc(data, value);
 }
 
 
@@ -337,6 +336,7 @@ bool File::isOpen() {
 	return false;
 }
 bool File::open() {
+	/*
 #ifdef OS_WINDOWS
 //	int pos = fileName.getPosBack("\\");
 	int pos = fileName.find_last_of("\\");
@@ -344,9 +344,12 @@ bool File::open() {
 	if (pos < 0) pos = fileName.find_last_of("/");
 	if (pos >= 0) {
 		string dirName = fileName.substr(0, pos);
-		createDir(dirName);
+		bool result = createDir(dirName);
+		if (!result) return false;
+
 	}
 #endif
+	*/
 	string fn = fileName;
 	string md = mode;
 
@@ -412,14 +415,20 @@ int File::read(void *buffer, int count) {
 	return fread(buffer, count, 1, f);
 }
 int File::readLine(String &s) {
-	s = "";
+	string s8 = "";
 	while (true) {
 		char ch;
 		read(&ch, 1);
 		if (ch == 13) continue;
-		if (ch == 10) return s.getLength();
-		s = s + ch;
-		if (eof()) return s.getLength();
+		if (ch == 10) {
+			s = s8;
+			return s.getLength();
+		}
+		s8 = s8 + ch;
+		if (eof()) {
+			s = s8;
+			return s.getLength();
+		}
 	}
 }
 int File::readAll(String &str) {
@@ -484,8 +493,11 @@ void File::createDir(String dirName) {
 	}
 }
 
-void File::createDir(string dirName) {
-	return;
+bool File::createDir(string dirName) {
+	//return;
+
+	bool rez = CreateDirectory(dirName.c_str(), NULL);
+	return rez;
 
 	string s = "";
 	while (dirName.length() > 0)
@@ -500,7 +512,7 @@ void File::createDir(string dirName) {
 		s += "\\";
 		if (ss == ":") continue;
 #ifdef OS_WINDOWS
-		CreateDirectory(s.c_str(), NULL);
+		bool rez = CreateDirectory(s.c_str(), NULL);
 #endif
 #ifdef OS_LINUX
 

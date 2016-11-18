@@ -100,8 +100,10 @@ namespace cj {
 
 		virtual int getPos(String str);
 		virtual int getPosBack(String str);
+		virtual size_t find(const String& str, size_t start = 0);
 
 		virtual string to_string();
+		virtual wstring to_wstring();
 		virtual char* c_str();
 		virtual int toInt();
 		virtual real toFloat();
@@ -191,6 +193,7 @@ namespace cj {
 	enum DateTimeFormat { dtfRus, dtfDatabase, dtfYMDhm, dtfMilisecond };
 
 	class DateTime : public Object {
+	protected:
 		time_t rawDateTime;
 	public:
 		DateTime();
@@ -206,6 +209,7 @@ namespace cj {
 		virtual String toString(DateTimeFormat dtf);
 		virtual bool isCorrect();
 		virtual long getRawDateTime();
+		virtual void setRawDateTime(long rawDT);
 		virtual long getDifference(DateTime dt);
 		virtual int getAge();
 		virtual int minusDay();
