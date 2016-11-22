@@ -1,3 +1,4 @@
+#ifdef OS_WINDOWS
 #include "cj.h"
 
 namespace cj {
@@ -77,3 +78,4 @@ bool Registry::deleteValue(String name) {
 }
 
 }
+#endif

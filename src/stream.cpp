@@ -439,7 +439,7 @@ int File::readAll(String &str) {
 	int result = fread(memblock, size, 1, f);
 	if (result != 1)
 	{
-		printf("Ошибка чтения\n");
+		printf("Reading error\n");
 		exit(3);
 	}
 	memblock[size] = '\0';
@@ -496,7 +496,10 @@ void File::createDir(String dirName) {
 bool File::createDir(string dirName) {
 	//return;
 
-	bool rez = CreateDirectory(dirName.c_str(), NULL);
+	bool rez = false;
+#ifdef OS_WINDOWS
+	rez = CreateDirectory(dirName.c_str(), NULL);
+#endif
 	return rez;
 
 	string s = "";
