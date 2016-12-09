@@ -63,7 +63,7 @@
 
 using namespace std;
 
-#ifdef OS_WINDOWS && _MSC_VER == 1800
+#if defined(OS_LINUX) || defined(OS_WINDOWS)// && defined(_MSC_VER) == 1800
 #include <codecvt>
 
 typedef std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> Convert16;
@@ -73,7 +73,7 @@ typedef std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> Convert32;
 #include <ctime>
 #endif
 
-#ifdef OS_LINUX || OS_WINDOWS && _MSC_VER == 1900
+#if defined(OS_WINDOWS) && defined(_MSC_VER == 1900)
 #include <uchar.h>
 typedef basic_string<char32_t> u32string;
 #include <boost/locale.hpp>
@@ -84,7 +84,10 @@ typedef basic_string<char32_t> u32string;
 #endif
 
 #include "types.h"
+#include "func.h"
 #include "object.h"
+#include "strings.h"
+#include "list.h"
 #include "stream.h"
 #include "logger.h"
 #include "config.h"
