@@ -64,7 +64,7 @@
 
 using namespace std;
 
-#ifndef USING_BOOST
+#ifndef USING_BOOST 
 #include <codecvt>
 
 typedef std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> Convert16;
