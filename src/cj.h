@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include "cfg.h"
 
 #ifdef __linux__
 #define OS_LINUX
@@ -63,7 +64,7 @@
 
 using namespace std;
 
-#if defined(OS_LINUX) || defined(OS_WINDOWS)// && defined(_MSC_VER) == 1800
+#ifndef USING_BOOST
 #include <codecvt>
 
 typedef std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> Convert16;

@@ -32,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\application.h" />
+    <ClInclude Include="..\..\src\cfg.h" />
     <ClInclude Include="..\..\src\cj.h" />
     <ClInclude Include="..\..\src\config.h" />
     <ClInclude Include="..\..\src\func.h" />
