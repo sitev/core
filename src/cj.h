@@ -72,9 +72,8 @@ typedef std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> Convert32;
 
 #include <iomanip>
 #include <ctime>
-#endif
 
-#if defined(OS_WINDOWS) && defined(_MSC_VER == 1900)
+#else
 #include <uchar.h>
 typedef basic_string<char32_t> u32string;
 #include <boost/locale.hpp>

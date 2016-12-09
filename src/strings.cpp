@@ -146,16 +146,12 @@ namespace cj {
 		//		s8 = this->to_string();
 	}
 	String::String(string value) {
-#ifdef OS_WINDOWS && _MSC_VER == 1800
+#ifndef USING_BOOST
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
-#endif
-
-#ifdef OS_LINUX || OS_WINDOWS && _MSC_VER == 1900
+#else
 		s = boost::locale::conv::utf_to_utf<char32_t>(value);
 #endif
-
-		//		s8 = this->to_string();
 	}
 	String::String(u32string value) {
 		s = value;
@@ -167,27 +163,22 @@ namespace cj {
 	}
 	String::String(const char *value) {
 
-#ifdef OS_WINDOWS && _MSC_VER == 1800
+#ifndef USING_BOOST
 		Convert32 convert32;
 		string s8 = value;
 		s = convert32.from_bytes(s8);
-#endif
-
-#ifdef OS_LINUX || OS_WINDOWS && _MSC_VER == 1900
-
+#else
 		s = boost::locale::conv::utf_to_utf<char32_t>(value);
 #endif
 
 		//		s8 = this->to_string();
 	}
 	string String::to_string() {
-#ifdef OS_WINDOWS && _MSC_VER == 1800
+#ifndef USING_BOOST
 		Convert32 convert32;
 		string s8 = convert32.to_bytes(s);
 		return s8;
-#endif
-
-#ifdef OS_LINUX
+#else
 		string s8 = boost::locale::conv::utf_to_utf<char>(s);
 		return s8;
 #endif
@@ -206,13 +197,10 @@ namespace cj {
 	}
 	String::String(char *value) {
 
-#ifdef OS_WINDOWS && _MSC_VER == 1800
+#ifndef USING_BOOST
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
-#endif
-
-#ifdef OS_LINUX || OS_WINDOWS && _MSC_VER == 1900
-
+#else
 		s = boost::locale::conv::utf_to_utf<char32_t>(value);
 #endif
 		//		s8 = this->to_string();
@@ -222,26 +210,20 @@ namespace cj {
 		mys[0] = value;
 		mys[1] = 0;
 
-#ifdef OS_WINDOWS && _MSC_VER == 1800
+#ifndef USING_BOOST
 		Convert32 convert32;
 		s = convert32.from_bytes(mys);
-#endif
-
-#ifdef OS_LINUX || OS_WINDOWS && _MSC_VER == 1900
-
+#else
 		s = boost::locale::conv::utf_to_utf<char32_t>(mys);
 #endif
 		//		s8 = this->to_string();
 	}
 	String::String(int value) {
 
-#ifdef OS_WINDOWS && _MSC_VER == 1800
+#ifndef USING_BOOST
 		Convert32 convert32;
 		s = convert32.from_bytes(::to_string(value));
-#endif
-
-#ifdef OS_LINUX || OS_WINDOWS && _MSC_VER == 1900
-
+#else
 		char values8[20];
 		sprintf(values8, "%d", value);
 		s = boost::locale::conv::utf_to_utf<char32_t>(values8);
@@ -254,14 +236,11 @@ namespace cj {
 	}
 	String::String(bool value) {
 
-#ifdef OS_WINDOWS && _MSC_VER == 1800
+#ifndef USING_BOOST
 		Convert32 convert32;
 		if (value) s = convert32.from_bytes("1");
 		else s = convert32.from_bytes("0");
-#endif
-
-#ifdef OS_LINUX || OS_WINDOWS && _MSC_VER == 1900
-
+#else
 		if (value) s = boost::locale::conv::utf_to_utf<char32_t>("1");
 		else s = boost::locale::conv::utf_to_utf<char32_t>("0");
 #endif
