@@ -26,6 +26,24 @@ int main(int argc, _TCHAR* argv[])
 		}
 	}
 	cout << s << endl;
+
+	vector<int> u32a;
+	int i = 0;
+	int len = s.length();
+	while (i < len) {
+		unsigned char a = s[i];
+		if (a <= 0x7f) {
+			u32a.push_back(a);
+		}
+		else {
+			i++;
+			unsigned char b = s[i];
+			int v = ((a & 0x1f) << 6) + (b & 0x3f);
+			u32a.push_back(v);
+		}
+		i++;
+	}
+
 	return 0;
 }
 
