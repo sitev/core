@@ -79,10 +79,64 @@ int main(int argc, _TCHAR* argv[])
 		if (a <= 0x7f) {
 			u32a.push_back(a);
 		}
-		else {
+		else if (a < 0xe0) {
+			unsigned char b = a;
+			i++;
+			a = s[i];
+
+			int v = ((b & 0x1f) << 6) + (a & 0x3f);
+			u32a.push_back(v);
+		}
+		else if (a < 0xf0) {
+			unsigned char c = a;
 			i++;
 			unsigned char b = s[i];
-			int v = ((a & 0x1f) << 6) + (b & 0x3f);
+			i++;
+			a = s[i];
+
+			int v = ((c & 0x0f) << 12) + ((b & 0x3f) << 6) + (a & 0x3f);
+			u32a.push_back(v);
+		}
+		else if (a < 0xf8) {
+			unsigned char d = a;
+			i++;
+			unsigned char c = s[i];
+			i++;
+			unsigned char b = s[i];
+			i++;
+			a = s[i];
+
+			int v = ((d & 0x07) << 18) + ((c & 0x3f) << 12) + ((b & 0x3f) << 6) + (a & 0x3f);
+			u32a.push_back(v);
+		}
+		else if (a < 0xfc) {
+			unsigned char e = a;
+			i++;
+			unsigned char d = s[i];
+			i++;
+			unsigned char c = s[i];
+			i++;
+			unsigned char b = s[i];
+			i++;
+			a = s[i];
+
+			int v = ((e & 0x03) << 24) + ((d & 0x3f) << 18) + ((c & 0x3f) << 12) + ((b & 0x3f) << 6) + (a & 0x3f);
+			u32a.push_back(v);
+		}
+		else if (a < 0xfe) {
+			unsigned char f = a;
+			i++;
+			unsigned char e = s[i];
+			i++;
+			unsigned char d = s[i];
+			i++;
+			unsigned char c = s[i];
+			i++;
+			unsigned char b = s[i];
+			i++;
+			a = s[i];
+
+			int v = ((f & 0x01) << 30) + ((e & 0x3f) << 24) + ((d & 0x3f) << 18) + ((c & 0x3f) << 12) + ((b & 0x3f) << 6) + (a & 0x3f);
 			u32a.push_back(v);
 		}
 		i++;
