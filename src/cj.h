@@ -86,6 +86,7 @@ typedef basic_string<char32_t> u32string;
 #include "types.h"
 #include "func.h"
 #include "object.h"
+#include "utf.h"
 #include "strings.h"
 #include "list.h"
 #include "stream.h"

@@ -28,6 +28,7 @@
     <ClCompile Include="..\..\src\registry.cpp" />
     <ClCompile Include="..\..\src\stream.cpp" />
     <ClCompile Include="..\..\src\strings.cpp" />
+    <ClCompile Include="..\..\src\utf.cpp" />
     <ClCompile Include="..\..\src\xmlParser.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +44,7 @@
     <ClInclude Include="..\..\src\stream.h" />
     <ClInclude Include="..\..\src\strings.h" />
     <ClInclude Include="..\..\src\types.h" />
+    <ClInclude Include="..\..\src\utf.h" />
     <ClInclude Include="..\..\src\xmlParser.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
