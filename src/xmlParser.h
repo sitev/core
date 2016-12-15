@@ -27,5 +27,4 @@ namespace cj {
 		virtual int parseAttrs(XmlTag *xmlTag);
 		virtual bool parse();
 	};
-
 }
