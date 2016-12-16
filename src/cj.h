@@ -10,56 +10,21 @@
 #define cfg_WebApp
 #endif
 
-//#define M_PI 3.14159
-
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <time.h>
-
 #ifdef OS_LINUX
-#include <sys/io.h>
+#include <sys/resource.h>
+#include <../src/uuid/uuid.h>
 #endif
 
 #ifdef OS_WINDOWS
 #include <io.h>
-#endif
-
-#include <iostream>
-#include <fstream>
-#include <map>
-#include <mutex>
-#include <functional>
-
-#ifdef OS_LINUX
-#include <sys/resource.h>
-#endif
-
-#ifdef OS_LINUX
-#include <dirent.h>
-#endif
-
-#ifdef OS_WINDOWS
+#include <registry.h>
 #include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")
 #endif
 
-#ifdef OS_LINUX
-#include <uuid/uuid.h>
-//	#include <gd.h>
-
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <fcntl.h>
-#endif
-
-#include <string>
+#include <string.h>
+#include <map>
+#include <mutex>
 #include <thread>
 
 using namespace std;
@@ -71,7 +36,7 @@ using namespace std;
 typedef basic_string<char32_t> u32string;
 #endif
 
-#elif USING_STL 
+#elif USING_STL
 
 #include <codecvt>
 
@@ -87,10 +52,6 @@ typedef basic_string<char32_t> u32string;
 #include <boost/locale.hpp>
 #endif
 
-#ifdef OS_WINDOWS
-#pragma comment(lib, "ws2_32.lib")
-#endif
-
 #include "types.h"
 #include "func.h"
 #include "object.h"
@@ -102,11 +63,4 @@ typedef basic_string<char32_t> u32string;
 #include "config.h"
 #include "xmlParser.h"
 
-#ifdef OS_WINDOWS
-#include "registry.h"
-#endif
-
 #include "application.h"
-
-
-

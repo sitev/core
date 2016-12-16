@@ -45,7 +45,7 @@ namespace cj {
 
 #ifdef LOGGER_OUT_FLAG
 #define LOGGER_OUT(s) application->logger_out(s)
-#define LOGGER_OUT(flag, s) application->logger_out(flag, s)
+#define LOGGER_OUT8(flag, s) application->logger_out(flag, s)
 #else
 #define LOGGER_OUT(flag, s)
 #endif
@@ -54,27 +54,27 @@ namespace cj {
 
 class Logger {
 protected:
-	bool isScreen = false;
-	bool isEnabled = true;
-	String fileName;
+    bool isScreen = false;
+    bool isEnabled = true;
+    String fileName;
 
-	struct timeval tv2;
-	//struct timezone tz2;
+    struct timeval tv2;
+    //struct timezone tz2;
 
 public:
-	Logger();
-	Logger(String fileName);
-	Logger(String path, String file);
+    Logger();
+    Logger(String fileName);
+    Logger(String path, String file);
 
-	virtual ~Logger();
+    virtual ~Logger();
 
-	virtual void set(String fileName);
-	virtual void set(String path, String file);
-	virtual void setEnabled(bool value);
+    virtual void set(String fileName);
+    virtual void set(String path, String file);
+    virtual void setEnabled(bool value);
 
-	virtual void out(String s);
-	virtual void out(String flag, String s);
-	virtual void out(String flag, string s);
+    virtual void out(String s);
+    virtual void out(String flag, String s);
+    virtual void out(String flag, string s);
 };
 
 }
