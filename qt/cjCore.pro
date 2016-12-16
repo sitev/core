@@ -21,7 +21,7 @@ SOURCES += \
     ../src/stream.cpp \
     ../src/strings.cpp \
     ../src/utf.cpp \
-    ../src/xmlParser.cpp
+    ../src/xmlParser.cpp \
 
 HEADERS += \
     ../src/application.h \
@@ -38,7 +38,7 @@ HEADERS += \
     ../src/types.h \
     ../src/config.h \
     ../src/utf.h \
-    ../src/xmlParser.h
+    ../src/xmlParser.h \
 
 unix {
     target.path = /usr/lib

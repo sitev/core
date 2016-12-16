@@ -22,6 +22,7 @@
 #pragma comment(lib, "ws2_32.lib")
 #endif
 
+#include <wctype.h>
 #include <string.h>
 #include <map>
 #include <mutex>
