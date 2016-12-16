@@ -146,11 +146,13 @@ namespace cj {
 		//		s8 = this->to_string();
 	}
 	String::String(string value) {
-#ifndef USING_BOOST
+#ifdef USING_UTF 
+		s = Utf::toUtf32(value);
+#elif USING_BOOST
+		s = boost::locale::conv::utf_to_utf<char32_t>(value);
+#elif USING_STL
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
-#else
-		s = boost::locale::conv::utf_to_utf<char32_t>(value);
 #endif
 	}
 	String::String(u32string value) {
@@ -162,25 +164,23 @@ namespace cj {
 		//		s8 = this->to_string();
 	}
 	String::String(const char *value) {
-
-#ifndef USING_BOOST
-		Convert32 convert32;
-		string s8 = value;
-		s = convert32.from_bytes(s8);
-#else
+#ifdef USING_UTF 
+		s = Utf::toUtf32((string)value);
+#elif USING_BOOST
 		s = boost::locale::conv::utf_to_utf<char32_t>(value);
+#elif USING_STL
+		Convert32 convert32;
+		s = convert32.from_bytes(value);
 #endif
-
-		//		s8 = this->to_string();
 	}
 	string String::to_string() {
-#ifndef USING_BOOST
+#ifdef USING_UTF 
+		return Utf::toUtf8(s);
+#elif USING_BOOST
+		return boost::locale::conv::utf_to_utf<char>(s);
+#elif USING_STL
 		Convert32 convert32;
-		string s8 = convert32.to_bytes(s);
-		return s8;
-#else
-		string s8 = boost::locale::conv::utf_to_utf<char>(s);
-		return s8;
+		return convert32.to_bytes(s);
 #endif
 	}
 
@@ -196,12 +196,13 @@ namespace cj {
 		return ss;
 	}
 	String::String(char *value) {
-
-#ifndef USING_BOOST
+#ifdef USING_UTF 
+		s = Utf::toUtf32((string)value);
+#elif USING_BOOST
+		s = boost::locale::conv::utf_to_utf<char32_t>(value);
+#elif USING_STL
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
-#else
-		s = boost::locale::conv::utf_to_utf<char32_t>(value);
 #endif
 		//		s8 = this->to_string();
 	}
@@ -210,23 +211,24 @@ namespace cj {
 		mys[0] = value;
 		mys[1] = 0;
 
-#ifndef USING_BOOST
+#ifdef USING_UTF 
+		s = Utf::toUtf32((string)mys);
+#elif USING_BOOST
+		s = boost::locale::conv::utf_to_utf<char32_t>(value);
+#elif USING_STL
 		Convert32 convert32;
-		s = convert32.from_bytes(mys);
-#else
-		s = boost::locale::conv::utf_to_utf<char32_t>(mys);
+		s = convert32.from_bytes(value);
 #endif
 		//		s8 = this->to_string();
 	}
 	String::String(int value) {
-
-#ifndef USING_BOOST
+#ifdef USING_UTF 
+		s = Utf::toUtf32(::to_string(value));
+#elif USING_BOOST
+		s = boost::locale::conv::utf_to_utf<char32_t>(::to_string(value));
+#elif USING_STL
 		Convert32 convert32;
 		s = convert32.from_bytes(::to_string(value));
-#else
-		char values8[20];
-		sprintf(values8, "%d", value);
-		s = boost::locale::conv::utf_to_utf<char32_t>(values8);
 #endif
 		//		s8 = this->to_string();
 	}
@@ -235,16 +237,18 @@ namespace cj {
 		//		s8 = this->to_string();
 	}
 	String::String(bool value) {
-
-#ifndef USING_BOOST
+#ifdef USING_UTF 
+		if (value) s = Utf::toUtf32((string)"1");
+		else s = Utf::toUtf32((string)"0");
+		
+#elif USING_BOOST
+		if (value) s = boost::locale::conv::utf_to_utf<char32_t>("1");
+		else s = boost::locale::conv::utf_to_utf<char32_t>("0");
+#elif USING_STL
 		Convert32 convert32;
 		if (value) s = convert32.from_bytes("1");
 		else s = convert32.from_bytes("0");
-#else
-		if (value) s = boost::locale::conv::utf_to_utf<char32_t>("1");
-		else s = boost::locale::conv::utf_to_utf<char32_t>("0");
 #endif
-		//		s8 = this->to_string();
 	}
 	String::~String() {
 	}
