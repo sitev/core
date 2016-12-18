@@ -38,6 +38,9 @@
  */
 #define _SVID_SOURCE
 
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wimplicit-function-declaration"
+
 #ifdef _WIN32
 #define _WIN32_WINNT 0x0500
 #include <windows.h>

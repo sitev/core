@@ -1,4 +1,5 @@
 ﻿#pragma once
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 
 #include "cfg.h"
 
@@ -12,7 +13,7 @@
 
 #ifdef OS_LINUX
 #include <sys/resource.h>
-#include <../src/uuid/uuid.h>
+#include "uuid/uuid.h"
 #endif
 
 #ifdef OS_WINDOWS

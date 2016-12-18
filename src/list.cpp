@@ -253,9 +253,9 @@ namespace cj {
     int ParamList::getCount() {
         return pars.size();
     }
-    /*bool ParamList::parse(String s) {
+    bool ParamList::parse(String s) {
         return true;
-    }*/
+    }
 
     String ParamList::getValue(String name) {
         string v = pars[name.to_string()];

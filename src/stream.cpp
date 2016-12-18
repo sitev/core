@@ -19,10 +19,10 @@ Stream::Stream() {
 }
 Stream::~Stream() {
 }
-/*void Stream::set(Stream* source) {
+void Stream::set(Stream* source) {
 }
 void Stream::set(Stream* source, int size) {
-}*/
+}
 int Stream::getSize() {
     return size;
 }

@@ -41,7 +41,7 @@
 #ifndef __GNUC_PREREQ
 # if defined __GNUC__ && defined __GNUC_MINOR__
 #  define __GNUC_PREREQ(maj, min) \
-	((__GNUC__ << 16) + __GNUC_MINOR__ >= ((maj) << 16) + (min))
+    ((__GNUC__ << 16) + __GNUC_MINOR__ >= ((maj) << 16) + (min))
 # else
 #  define __GNUC_PREREQ(maj, min) 0
 # endif
@@ -51,10 +51,10 @@
 
 /* &a[0] degrades to a pointer: a different type from an array */
 # define __must_be_array(a) \
-	UL_BUILD_BUG_ON_ZERO(__builtin_types_compatible_p(__typeof__(a), __typeof__(&a[0])))
+    UL_BUILD_BUG_ON_ZERO(__builtin_types_compatible_p(__typeof__(a), __typeof__(&a[0])))
 
 # define ignore_result(x) ({ \
-	__typeof__(x) __dummy __attribute__((__unused__)) = (x); (void) __dummy; \
+    __typeof__(x) __dummy __attribute__((__unused__)) = (x); (void) __dummy; \
 })
 
 #else /* !__GNUC__ */
@@ -108,18 +108,18 @@
 
 #ifndef min
 # define min(x, y) ({				\
-	__typeof__(x) _min1 = (x);		\
-	__typeof__(y) _min2 = (y);		\
-	(void) (&_min1 == &_min2);		\
-	_min1 < _min2 ? _min1 : _min2; })
+    __typeof__(x) _min1 = (x);		\
+    __typeof__(y) _min2 = (y);		\
+    (void) (&_min1 == &_min2);		\
+    _min1 < _min2 ? _min1 : _min2; })
 #endif
 
 #ifndef max
 # define max(x, y) ({				\
-	__typeof__(x) _max1 = (x);		\
-	__typeof__(y) _max2 = (y);		\
-	(void) (&_max1 == &_max2);		\
-	_max1 > _max2 ? _max1 : _max2; })
+    __typeof__(x) _max1 = (x);		\
+    __typeof__(y) _max2 = (y);		\
+    (void) (&_max1 == &_max2);		\
+    _max1 > _max2 ? _max1 : _max2; })
 #endif
 
 #ifndef offsetof
@@ -128,8 +128,8 @@
 
 #ifndef container_of
 #define container_of(ptr, type, member) ({                       \
-	const __typeof__( ((type *)0)->member ) *__mptr = (ptr); \
-	(type *)( (char *)__mptr - offsetof(type,member) );})
+    const __typeof__( ((type *)0)->member ) *__mptr = (ptr); \
+    (type *)( (char *)__mptr - offsetof(type,member) );})
 #endif
 
 #ifndef HAVE_PROGRAM_INVOCATION_SHORT_NAME
@@ -139,29 +139,29 @@ extern char *__progname;
 # else
 #  ifdef HAVE_GETEXECNAME
 #   define program_invocation_short_name \
-		prog_inv_sh_nm_from_file(getexecname(), 0)
+        prog_inv_sh_nm_from_file(getexecname(), 0)
 #  else
 #   define program_invocation_short_name \
-		prog_inv_sh_nm_from_file(__FILE__, 1)
+        prog_inv_sh_nm_from_file(__FILE__, 1)
 #  endif
 static char prog_inv_sh_nm_buf[256];
 static inline char *
 prog_inv_sh_nm_from_file(char *f, char stripext)
 {
-	char *t;
+    char *t;
 
-	if ((t = strrchr(f, '/')) != NULL)
-		t++;
-	else
-		t = f;
+    if ((t = strrchr(f, '/')) != NULL)
+        t++;
+    else
+        t = f;
 
-	strncpy(prog_inv_sh_nm_buf, t, sizeof(prog_inv_sh_nm_buf) - 1);
-	prog_inv_sh_nm_buf[sizeof(prog_inv_sh_nm_buf) - 1] = '\0';
+    strncpy(prog_inv_sh_nm_buf, t, sizeof(prog_inv_sh_nm_buf) - 1);
+    prog_inv_sh_nm_buf[sizeof(prog_inv_sh_nm_buf) - 1] = '\0';
 
-	if (stripext && (t = strrchr(prog_inv_sh_nm_buf, '.')) != NULL)
-		*t = '\0';
+    if (stripext && (t = strrchr(prog_inv_sh_nm_buf, '.')) != NULL)
+        *t = '\0';
 
-	return prog_inv_sh_nm_buf;
+    return prog_inv_sh_nm_buf;
 }
 # endif
 #endif
@@ -171,20 +171,20 @@ prog_inv_sh_nm_from_file(char *f, char stripext)
 static inline void
 errmsg(char doexit, int excode, char adderr, const char *fmt, ...)
 {
-	fprintf(stderr, "%s: ", program_invocation_short_name);
-	if (fmt != NULL) {
-		va_list argp;
-		va_start(argp, fmt);
-		vfprintf(stderr, fmt, argp);
-		va_end(argp);
-		if (adderr)
-			fprintf(stderr, ": ");
-	}
-	if (adderr)
-		fprintf(stderr, "%m");
-	fprintf(stderr, "\n");
-	if (doexit)
-		exit(excode);
+    fprintf(stderr, "%s: ", program_invocation_short_name);
+    if (fmt != NULL) {
+        va_list argp;
+        va_start(argp, fmt);
+        vfprintf(stderr, fmt, argp);
+        va_end(argp);
+        if (adderr)
+            fprintf(stderr, ": ");
+    }
+    if (adderr)
+        fprintf(stderr, "%m");
+    fprintf(stderr, "\n");
+    if (doexit)
+        exit(excode);
 }
 
 #ifndef HAVE_ERR
@@ -207,7 +207,7 @@ errmsg(char doexit, int excode, char adderr, const char *fmt, ...)
 
 static inline __attribute__((const)) int is_power_of_2(unsigned long num)
 {
-	return (num != 0 && ((num & (num - 1)) == 0));
+    return (num != 0 && ((num & (num - 1)) == 0));
 }
 
 #ifndef HAVE_LOFF_T
@@ -219,7 +219,7 @@ typedef int64_t loff_t;
 #include <dirent.h>
 static inline int dirfd(DIR *d)
 {
-	return d->dd_fd;
+    return d->dd_fd;
 }
 #endif
 
@@ -253,34 +253,19 @@ static inline int dirfd(DIR *d)
 static inline size_t get_hostname_max(void)
 {
 #if HAVE_DECL__SC_HOST_NAME_MAX
-	long len = sysconf(_SC_HOST_NAME_MAX);
+    long len = sysconf(_SC_HOST_NAME_MAX);
 
-	if (0 < len)
-		return len;
+    if (0 < len)
+        return len;
 #endif
 
 #ifdef MAXHOSTNAMELEN
-	return MAXHOSTNAMELEN;
+    return MAXHOSTNAMELEN;
 #elif HOST_NAME_MAX
-	return HOST_NAME_MAX;
+    return HOST_NAME_MAX;
 #endif
-	return 64;
+    return 64;
 }
-
-#ifndef HAVE_USLEEP
-/*
- * This function is marked obsolete in POSIX.1-2001 and removed in
- * POSIX.1-2008. It is replaced with nanosleep().
- */
-static inline int usleep(useconds_t usec)
-{
-	struct timespec waittime = {
-		.tv_sec   =  usec / 1000000L,
-		.tv_nsec  = (usec % 1000000L) * 1000
-	};
-	return nanosleep(&waittime, NULL);
-}
-#endif
 
 /*
  * Constant strings for usage() functions. For more info see

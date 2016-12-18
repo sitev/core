@@ -267,11 +267,11 @@ namespace cj {
     void String::setChar(int index, String ch) {
         s[index] = ch.s.c_str()[0];
     }
-    /*int String::getCharCode(int index) {
+    int String::getCharCode(int index) {
         return 0;
     }
     void String::setCharCode(int index, int code) {
-    }*/
+    }
     String& String::operator=(const String& value) {
         s = value.s;
         //		s8 = this->to_string();
@@ -314,8 +314,8 @@ namespace cj {
     int String::getLength() {
         return s.length();
     }
-    /*void String::setLength(int value) {
-    }*/
+    void String::setLength(int value) {
+    }
     String String::subString(int pos, int count) {
         return s.substr(pos, count);
 
@@ -429,7 +429,7 @@ namespace cj {
         }
         return s;
     }
-    /*void String::fromFloat(real value, int digit) {
-    }*/
+    void String::fromFloat(real value, int digit) {
+    }
 
 }
