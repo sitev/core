@@ -97,6 +97,7 @@ public:
 	virtual int read(void *buffer, int count);
 	virtual int readLine(String &str);
 	virtual int readAll(String &str);
+	virtual int readAll(Str &s);
 	virtual int seek(int offset, int origin);
 	virtual int write(void *buffer, int count);
 	virtual int write(String str);

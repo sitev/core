@@ -56,8 +56,8 @@ namespace cj {
 #ifdef OS_WINDOWS
 	static int usleep_cnt = 0;
 	void usleep(big usec) {
-		Sleep(usec / 1000);
-		//if (usleep_cnt % 10 == 0) Sleep(usec / 1000);
+		//Sleep(usec / 1000);
+		if (usleep_cnt % 10 == 0) Sleep(usec / 100);
 		usleep_cnt++;
 		/*
 		HANDLE timer;

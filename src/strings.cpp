@@ -127,6 +127,9 @@ namespace cj {
 		return s.rfind(str.s, pos);
 	}
 
+	string Str::to_string() {
+		return s;
+	}
 
 	Str::~Str() {
 

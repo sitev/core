@@ -54,6 +54,8 @@ namespace cj {
 		virtual size_t find(const Str& str, size_t start = 0);
 		size_t rfind(const Str& str, size_t pos = -1) const;
 
+		virtual string to_string();
+
 		virtual ~Str();
 	};
 

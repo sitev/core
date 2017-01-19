@@ -245,7 +245,7 @@ Memory::~Memory() {
 		_close(f);
 		*/
 
-		//free(data);
+		free(data);
 		try {
 			//delete[] data;
 		}
@@ -431,7 +431,7 @@ int File::readLine(String &s) {
 		}
 	}
 }
-int File::readAll(String &str) {
+int File::readAll(String &s) {
 	setPos(0);
 	int size = getSize();
 	char *memblock = new char[size + 1];
@@ -443,10 +443,29 @@ int File::readAll(String &str) {
 		exit(3);
 	}
 	memblock[size] = '\0';
-	str = memblock;
+	s = memblock;
 	delete[] memblock;
 	return result;
 }
+
+int File::readAll(Str &s) {
+	setPos(0);
+	int size = getSize();
+	char *memblock = new char[size + 1];
+
+	int result = fread(memblock, size, 1, f);
+	if (result != 1)
+	{
+		printf("Reading error\n");
+		exit(3);
+	}
+	memblock[size] = '\0';
+	s = memblock;
+	delete[] memblock;
+	return result;
+}
+
+
 int File::seek(int offset, int origin) {
 #ifdef OS_WINDOWS
 	return _fseeki64(f, offset, origin);
