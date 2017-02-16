@@ -7,6 +7,7 @@ class Stream : public Object
 protected:
 	int pos; 
 	int size;
+	bool fFree = false;
 public:
 	Stream();
 	virtual ~Stream();

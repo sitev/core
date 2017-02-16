@@ -245,7 +245,8 @@ Memory::~Memory() {
 		_close(f);
 		*/
 
-		free(data);
+		//free(data);
+		fFree = true;
 		try {
 			//delete[] data;
 		}
@@ -294,7 +295,28 @@ void Memory::setSize(int value) {
 		return;
 	}
 	size = value;
-	data = (char*)realloc(data, value);
+	
+	//__try {
+	//	//DebugBreak();
+	//	data = (char*)realloc(data, value);
+	//}
+	//__except (GetExceptionCode() == EXCEPTION_BREAKPOINT ?
+	//		EXCEPTION_EXECUTE_HANDLER : EXCEPTION_CONTINUE_SEARCH) {
+	//	std::cout << "SEH exception" << std::endl;
+	//}
+	
+	
+	if (fFree) {
+		return;
+	}
+	try {
+		//DebugBreak();
+		data = (char*)realloc(data, value);
+	}
+	catch (...) {
+		data = (char*)realloc(data, value);
+	}
+	
 }
 
 

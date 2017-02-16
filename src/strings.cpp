@@ -168,13 +168,25 @@ namespace cj {
 	}
 	String::String(const char *value) {
 #ifdef USING_UTF 
-		s = Utf::toUtf32((string)value);
+		test(value);
 #elif USING_BOOST
 		s = boost::locale::conv::utf_to_utf<char32_t>(value);
 #elif USING_STL
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
 #endif
+	}
+	void String::test(const char *value) {
+		__try {
+			test1(value);
+		}
+		__except(0) {
+			int a = 1;
+		}
+	}
+	void String::test1(const char *value) {
+		string ss = value;
+		s = Utf::toUtf32(ss);
 	}
 	string String::to_string() {
 #ifdef USING_UTF 

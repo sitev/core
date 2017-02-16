@@ -72,6 +72,8 @@ namespace cj {
 		String(u32string value);
 		String(char32_t value);
 		String(const char *value);
+		void test(const char *value);
+		void test1(const char *value);
 		String(char *value);
 		String(char value);
 		String(int value);

@@ -1,4 +1,3 @@
-#ifdef OS_WINDOWS
 #pragma once
 
 namespace cj {
@@ -24,4 +23,3 @@ public:
 };
 
 }
-#endif
