@@ -76,14 +76,15 @@ using namespace std;
 typedef basic_string<char32_t> u32string;
 #endif
 
-#elif USING_STL 
+#elif defined(USING_STL)
 
 #include <codecvt>
 
 typedef std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> Convert16;
 typedef std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> Convert32;
 
-#elif USING_BOOST
+#elif defined(USING_BOOST)
+
 #include <uchar.h>
 typedef basic_string<char32_t> u32string;
 #include <boost/locale.hpp>

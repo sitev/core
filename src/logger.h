@@ -6,7 +6,7 @@ namespace cj {
 #define LOGGER_DEBUG_FLAG 1
 #define LOGGER_INFO_FLAG 1
 #define LOGGER_ERROR_FLAG 1
-#define LOGGER_SCREEN_FLAG 0
+#define LOGGER_SCREEN_FLAG 1
 
 #define LOGGER_OUT_FLAG 1
 
