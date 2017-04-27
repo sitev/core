@@ -225,6 +225,8 @@ Memory::Memory() {
 	_write(f, v, strlen(v));
 	_close(f);
 	*/
+
+	allocated = 0;
 	setPos(0);
 	setSize(0);
 }
@@ -254,6 +256,7 @@ Memory::~Memory() {
 			int a = 1;
 		}
 		size = 0;
+		allocated = 0;
 		data = NULL;
 		//g_mutex9.unlock();
 	}
@@ -290,6 +293,20 @@ void Memory::set(Stream *source, int size) {
 	write(((Memory*)source)->data, source->getSize());
 }
 void Memory::setSize(int value) {
+	size = value;
+	if (size > allocated) {
+		allocated = size * 2;
+		try {
+			data = (char*)realloc(data, allocated);
+		}
+		catch (...) {
+			printf("Memory: error realloc\n");
+			data = NULL;
+			size = 0;
+		}
+	}
+
+
 	if (value < 0) {
 		int a = 1;
 		return;
@@ -450,6 +467,23 @@ int File::readLine(String &s) {
 		if (eof()) {
 			s = s8;
 			return s.getLength();
+		}
+	}
+}
+int File::readLine(Str &s) {
+	string s8 = "";
+	while (true) {
+		char ch;
+		read(&ch, 1);
+		if (ch == 13) continue;
+		if (ch == 10) {
+			s = s8;
+			return s.length();
+		}
+		s8 = s8 + ch;
+		if (eof()) {
+			s = s8;
+			return s.length();
 		}
 	}
 }

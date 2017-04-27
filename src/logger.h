@@ -6,7 +6,7 @@ namespace cj {
 #define LOGGER_DEBUG_FLAG 1
 #define LOGGER_INFO_FLAG 1
 #define LOGGER_ERROR_FLAG 1
-#define LOGGER_SCREEN_FLAG 1
+//#define LOGGER_SCREEN_FLAG 0
 
 #define LOGGER_OUT_FLAG 1
 
@@ -39,8 +39,8 @@ namespace cj {
 #define LOGGER_SCREEN(s) application->logger_out("SCREEN", s)
 #define LOGGER_SCREEN8(s) application->logger_out8("SCREEN", s)
 #else
-#define LOGGER_SCREEN_FLAG(s)
-#define LOGGER_SCREEN_FLAG8(s)
+#define LOGGER_SCREEN(s)
+#define LOGGER_SCREEN8(s)
 #endif
 
 #ifdef LOGGER_OUT_FLAG

@@ -70,6 +70,7 @@ class Memory : public Stream
 {
 public:
 	char *data=NULL;
+	int allocated;
 	Memory();
 	virtual ~Memory();
 	virtual int read(void *buffer, int count);
@@ -94,9 +95,9 @@ public:
 	~File();
 	bool isOpen();
 
-	String Class_getName();
 	virtual int read(void *buffer, int count);
 	virtual int readLine(String &str);
+	virtual int readLine(Str &s);
 	virtual int readAll(String &str);
 	virtual int readAll(Str &s);
 	virtual int seek(int offset, int origin);
