@@ -1,2 +1,2 @@
-# cjCore
-C++ core library
+# core
+Crossplatform C++ core class library
