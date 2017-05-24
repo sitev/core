@@ -101,6 +101,7 @@ typedef basic_string<char32_t> u32string;
 #include "strings.h"
 #include "list.h"
 #include "stream.h"
+#include "buffer.h"
 #include "logger.h"
 #include "config.h"
 #include "xmlParser.h"
