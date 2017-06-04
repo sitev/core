@@ -1,6 +1,6 @@
 #pragma once
 
-namespace cj {
+namespace core {
 
 	class Char {
 		friend String;
@@ -119,7 +119,5 @@ namespace cj {
 		virtual String allTrim();
 		virtual void fromFloat(real value, int digit);
 	};
-
-
 
 }

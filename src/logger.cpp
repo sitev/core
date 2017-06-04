@@ -1,6 +1,6 @@
-#include "cj.h"
+#include "core.h"
 
-namespace cj {
+namespace core {
 
 Logger::Logger() {
 }

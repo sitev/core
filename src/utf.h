@@ -1,8 +1,8 @@
 #pragma once
 
-#include "cj.h"
+#include "core.h"
 
-namespace cj {
+namespace core {
 	class Utf {
 	public:
 		static u32string toUtf32(string &utf8);

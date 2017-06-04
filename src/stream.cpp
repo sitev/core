@@ -1,4 +1,4 @@
-#include "cj.h"
+#include "core.h"
 
 #include <stdio.h>
 #include <fcntl.h>
@@ -10,7 +10,7 @@
 #include <share.h>
 #endif
 
-namespace cj {
+namespace core {
 
 //--------------------------------------------------------------------------------------------------
 //----------          Class Stream          --------------------------------------------------------

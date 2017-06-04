@@ -1,6 +1,6 @@
-#include "cj.h"
+#include "core.h"
 
-namespace cj {
+namespace core {
 
 	u32string Utf::toUtf32(string &utf8) {
 		u32string utf32;

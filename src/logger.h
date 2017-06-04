@@ -1,6 +1,6 @@
 #pragma once
 
-namespace cj {
+namespace core {
 
 #define LOGGER_TRACE_FLAG 1
 #define LOGGER_DEBUG_FLAG 1

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace cj {
+namespace core {
 
 #define LIST_CAPACITY_STEP 256
 	class List : public Object

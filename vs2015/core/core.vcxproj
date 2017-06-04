@@ -36,7 +36,7 @@
     <ClInclude Include="..\..\src\application.h" />
     <ClInclude Include="..\..\src\buffer.h" />
     <ClInclude Include="..\..\src\cfg.h" />
-    <ClInclude Include="..\..\src\cj.h" />
+    <ClInclude Include="..\..\src\core.h" />
     <ClInclude Include="..\..\src\config.h" />
     <ClInclude Include="..\..\src\func.h" />
     <ClInclude Include="..\..\src\list.h" />

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace cj {
+namespace core {
 
 class Stream : public Object
 {

@@ -1,6 +1,6 @@
-#include "cj.h"
+#include "core.h"
 
-namespace cj {
+namespace core {
 
 	int round(real value) {
 		return (int)(value + 0.5);
