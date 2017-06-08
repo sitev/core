@@ -560,7 +560,7 @@ void File::createDir(String dirName) {
 		s += "\\";
 		if (ss == ":") continue;
 #ifdef OS_WINDOWS
-		CreateDirectory(s.to_string().c_str(), NULL);
+        CreateDirectoryA(s.to_string().c_str(), NULL);
 #endif
 #ifdef OS_LINUX
 
@@ -573,7 +573,7 @@ bool File::createDir(string dirName) {
 
 	bool rez = false;
 #ifdef OS_WINDOWS
-	rez = CreateDirectory(dirName.c_str(), NULL);
+    rez = CreateDirectoryA(dirName.c_str(), NULL);
 #endif
 	return rez;
 
@@ -590,7 +590,7 @@ bool File::createDir(string dirName) {
 		s += "\\";
 		if (ss == ":") continue;
 #ifdef OS_WINDOWS
-		bool rez = CreateDirectory(s.c_str(), NULL);
+        bool rez = CreateDirectoryA(s.c_str(), NULL);
 #endif
 #ifdef OS_LINUX
 

@@ -151,9 +151,9 @@ namespace core {
 	String::String(string value) {
 #ifdef USING_UTF 
 		s = Utf::toUtf32(value);
-#elif USING_BOOST
+#elif defined(USING_BOOST)
 		s = boost::locale::conv::utf_to_utf<char32_t>(value);
-#elif USING_STL
+#elif defined(USING_STL)
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
 #endif

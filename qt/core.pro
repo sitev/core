@@ -6,7 +6,7 @@
 
 QT       -= core gui
 
-TARGET = cjCore
+TARGET = core
 TEMPLATE = lib
 CONFIG += staticlib
 
@@ -15,16 +15,31 @@ SOURCES += \
     ../src/logger.cpp \
     ../src/object.cpp \
     ../src/stream.cpp \
-    ../src/config.cpp
+    ../src/config.cpp \
+    ../src/buffer.cpp \
+    ../src/func.cpp \
+    ../src/list.cpp \
+    ../src/registry.cpp \
+    ../src/strings.cpp \
+    ../src/utf.cpp \
+    ../src/xmlParser.cpp
 
 HEADERS += \
     ../src/application.h \
-    ../src/cj.h \
+    ../src/core.h \
     ../src/logger.h \
     ../src/object.h \
     ../src/stream.h \
     ../src/types.h \
-    ../src/config.h
+    ../src/config.h \
+    ../src/buffer.h \
+    ../src/cfg.h \
+    ../src/func.h \
+    ../src/list.h \
+    ../src/registry.h \
+    ../src/strings.h \
+    ../src/utf.h \
+    ../src/xmlParser.h
 
 unix {
     target.path = /usr/lib
