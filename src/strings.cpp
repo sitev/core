@@ -168,32 +168,21 @@ namespace core {
 	}
 	String::String(const char *value) {
 #ifdef USING_UTF 
-		test(value);
-#elif USING_BOOST
+		string ss = value;
+		s = Utf::toUtf32(ss);
+#elif defined(USING_BOOST)
 		s = boost::locale::conv::utf_to_utf<char32_t>(value);
-#elif USING_STL
+#elif defined(USING_STL)
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
 #endif
 	}
-	void String::test(const char *value) {
-		__try {
-			test1(value);
-		}
-		__except(0) {
-			int a = 1;
-		}
-	}
-	void String::test1(const char *value) {
-		string ss = value;
-		s = Utf::toUtf32(ss);
-	}
 	string String::to_string() {
 #ifdef USING_UTF 
 		return Utf::toUtf8(s);
-#elif USING_BOOST
+#elif defined(USING_BOOST)
 		return boost::locale::conv::utf_to_utf<char>(s);
-#elif USING_STL
+#elif defined(USING_STL)
 		Convert32 convert32;
 		return convert32.to_bytes(s);
 #endif
@@ -212,10 +201,11 @@ namespace core {
 	}
 	String::String(char *value) {
 #ifdef USING_UTF 
-		s = Utf::toUtf32((string)value);
-#elif USING_BOOST
+		string ss = value;
+		s = Utf::toUtf32(ss);
+#elif defined(USING_BOOST)
 		s = boost::locale::conv::utf_to_utf<char32_t>(value);
-#elif USING_STL
+#elif defined(USING_STL)
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
 #endif
@@ -227,10 +217,11 @@ namespace core {
 		mys[1] = 0;
 
 #ifdef USING_UTF 
-		s = Utf::toUtf32((string)mys);
-#elif USING_BOOST
+		string ss = mys;
+		s = Utf::toUtf32(ss);
+#elif defined USING_BOOST
 		s = boost::locale::conv::utf_to_utf<char32_t>(value);
-#elif USING_STL
+#elif defined USING_STL
 		Convert32 convert32;
 		s = convert32.from_bytes(value);
 #endif
@@ -238,10 +229,11 @@ namespace core {
 	}
 	String::String(int value) {
 #ifdef USING_UTF 
-		s = Utf::toUtf32(::to_string(value));
-#elif USING_BOOST
+		string ss = ::to_string(value);
+		s = Utf::toUtf32(ss);
+#elif defined USING_BOOST
 		s = boost::locale::conv::utf_to_utf<char32_t>(::to_string(value));
-#elif USING_STL
+#elif defined USING_STL
 		Convert32 convert32;
 		s = convert32.from_bytes(::to_string(value));
 #endif
@@ -253,13 +245,15 @@ namespace core {
 	}
 	String::String(bool value) {
 #ifdef USING_UTF 
-		if (value) s = Utf::toUtf32((string)"1");
-		else s = Utf::toUtf32((string)"0");
+		string ss;
+		if (value) ss = "1";
+		else ss = "0";
+		s = Utf::toUtf32(ss);
 		
-#elif USING_BOOST
+#elif defined USING_BOOST
 		if (value) s = boost::locale::conv::utf_to_utf<char32_t>("1");
 		else s = boost::locale::conv::utf_to_utf<char32_t>("0");
-#elif USING_STL
+#elif defined USING_STL
 		Convert32 convert32;
 		if (value) s = convert32.from_bytes("1");
 		else s = convert32.from_bytes("0");

@@ -34,19 +34,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: libcjCore.a
+all: libcore.a
 
 # Tool invocations
-libcjCore.a: $(OBJS) $(USER_OBJS)
+libcore.a: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross GCC Archiver'
-	ar -r  "libcjCore.a" $(OBJS) $(USER_OBJS) $(LIBS)
+	ar -r  "libcore.a" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(C++_DEPS)$(OBJS)$(C_DEPS)$(CC_DEPS)$(ARCHIVES)$(CPP_DEPS)$(CXX_DEPS)$(C_UPPER_DEPS) libcjCore.a
+	-$(RM) $(C++_DEPS)$(OBJS)$(C_DEPS)$(CC_DEPS)$(ARCHIVES)$(CPP_DEPS)$(CXX_DEPS)$(C_UPPER_DEPS) libcore.a
 	-@echo ' '
 
 .PHONY: all clean dependents
