@@ -1,3 +1,5 @@
+#ifdef OS_WINDOWS
+
 #include "core.h"
 
 namespace core {
@@ -77,3 +79,5 @@ bool Registry::deleteValue(String name) {
 }
 
 }
+
+#endif

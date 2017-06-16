@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef OS_WINDOWS
+
 namespace core {
 
 class Registry : public Object {
@@ -21,5 +23,7 @@ public:
 	virtual bool setAnsiStringValue(String name, string value);
 	virtual bool deleteValue(String name);
 };
+
+#endif
 
 }
