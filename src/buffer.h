@@ -15,6 +15,8 @@ namespace core {
 		virtual bool isEmpty();
 		virtual void clear();
 		virtual bool eof();
+		virtual int getDepth();
+
 		virtual int read(void *buffer, int count);
 	};
 

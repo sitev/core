@@ -33,6 +33,10 @@ namespace core {
 		return read_pos >= size;
 	}
 
+	int Buffer::getDepth() {
+		return pos - read_pos;
+	}
+
 	int Buffer::read(void *buffer, int count) {
 		if (data == NULL) return 0;
 		if (buffer == NULL) return 0;
