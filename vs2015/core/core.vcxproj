@@ -107,12 +107,12 @@
     <LibraryPath>C:\projects\libraries\boost\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\projects\libraries\boost;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\projects\libraries\boost\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\projects\libraries\boost;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\projects\libraries\boost\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\..\core\src;..\..\..\network\src;..\..\..\http\src;..\..\..\webserver\src;..\..\..\proxy\src;$(IncludePath)</IncludePath>
+    <LibraryPath>Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
