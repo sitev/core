@@ -1,0 +1,98 @@
+﻿  xmlParser.cpp
+c:\projects\core\src\strings.h(60): warning C4521: 'core::Str': multiple copy constructors specified
+c:\projects\core\src\strings.h(119): warning C4521: 'core::String': multiple copy constructors specified
+c:\projects\core\src\logger.h(48): warning C4005: 'LOGGER_OUT': macro redefinition
+  c:\projects\core\src\logger.h(47): note: see previous definition of 'LOGGER_OUT'
+c:\projects\core\src\xmlparser.cpp(18): warning C4244: 'initializing': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\xmlparser.cpp(50): warning C4244: 'initializing': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\xmlparser.cpp(57): warning C4244: '=': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\xmlparser.cpp(128): warning C4244: '=': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\xmlparser.cpp(173): warning C4244: 'argument': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\xmlparser.cpp(201): warning C4244: 'argument': conversion from 'char32_t' to 'char', possible loss of data
+  utf.cpp
+c:\projects\core\src\strings.h(60): warning C4521: 'core::Str': multiple copy constructors specified
+c:\projects\core\src\strings.h(119): warning C4521: 'core::String': multiple copy constructors specified
+c:\projects\core\src\logger.h(48): warning C4005: 'LOGGER_OUT': macro redefinition
+  c:\projects\core\src\logger.h(47): note: see previous definition of 'LOGGER_OUT'
+c:\projects\core\src\utf.cpp(43): warning C4244: 'argument': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\utf.cpp(48): warning C4244: 'argument': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\utf.cpp(52): warning C4244: 'argument': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\utf.cpp(53): warning C4244: 'argument': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\utf.cpp(54): warning C4244: 'argument': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\utf.cpp(59): warning C4244: 'argument': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\utf.cpp(60): warning C4244: 'argument': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\utf.cpp(61): warning C4244: 'argument': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\utf.cpp(67): warning C4244: 'argument': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\utf.cpp(68): warning C4244: 'argument': conversion from 'char32_t' to 'char', possible loss of data
+c:\projects\core\src\utf.cpp(69): warning C4244: 'argument': conversion from 'char32_t' to 'char', possible loss of data
+  strings.cpp
+c:\projects\core\src\strings.h(60): warning C4521: 'core::Str': multiple copy constructors specified
+c:\projects\core\src\strings.h(119): warning C4521: 'core::String': multiple copy constructors specified
+c:\projects\core\src\logger.h(48): warning C4005: 'LOGGER_OUT': macro redefinition
+  c:\projects\core\src\logger.h(47): note: see previous definition of 'LOGGER_OUT'
+c:\projects\core\src\strings.cpp(65): warning C4244: 'argument': conversion from 'double' to 'char', possible loss of data
+c:\projects\core\src\strings.cpp(391): warning C4244: 'argument': conversion from 'char32_t' to 'wint_t', possible loss of data
+  stream.cpp
+c:\projects\core\src\strings.h(60): warning C4521: 'core::Str': multiple copy constructors specified
+c:\projects\core\src\strings.h(119): warning C4521: 'core::String': multiple copy constructors specified
+c:\projects\core\src\logger.h(48): warning C4005: 'LOGGER_OUT': macro redefinition
+  c:\projects\core\src\logger.h(47): note: see previous definition of 'LOGGER_OUT'
+c:\projects\core\src\stream.cpp(396): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
+c:\projects\core\src\stream.cpp(576): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+c:\projects\core\src\stream.cpp(593): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+c:\projects\core\src\stream.cpp(605): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
+c:\projects\core\src\stream.cpp(610): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
+  registry.cpp
+  object.cpp
+c:\projects\core\src\strings.h(60): warning C4521: 'core::Str': multiple copy constructors specified
+c:\projects\core\src\strings.h(119): warning C4521: 'core::String': multiple copy constructors specified
+c:\projects\core\src\logger.h(48): warning C4005: 'LOGGER_OUT': macro redefinition
+  c:\projects\core\src\logger.h(47): note: see previous definition of 'LOGGER_OUT'
+c:\projects\core\src\object.cpp(156): warning C4244: 'return': conversion from 'time_t' to 'long', possible loss of data
+c:\projects\core\src\object.cpp(162): warning C4244: 'return': conversion from 'time_t' to 'long', possible loss of data
+c:\projects\core\src\object.cpp(182): warning C4244: 'return': conversion from 'time_t' to 'int', possible loss of data
+  logger.cpp
+c:\projects\core\src\strings.h(60): warning C4521: 'core::Str': multiple copy constructors specified
+c:\projects\core\src\strings.h(119): warning C4521: 'core::String': multiple copy constructors specified
+c:\projects\core\src\logger.h(48): warning C4005: 'LOGGER_OUT': macro redefinition
+  c:\projects\core\src\logger.h(47): note: see previous definition of 'LOGGER_OUT'
+c:\projects\core\src\logger.cpp(102): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\time.h(505): note: see declaration of 'localtime'
+c:\projects\core\src\logger.cpp(104): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\time.h(505): note: see declaration of 'localtime'
+c:\projects\core\src\logger.cpp(107): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
+  list.cpp
+c:\projects\core\src\strings.h(60): warning C4521: 'core::Str': multiple copy constructors specified
+c:\projects\core\src\strings.h(119): warning C4521: 'core::String': multiple copy constructors specified
+c:\projects\core\src\logger.h(48): warning C4005: 'LOGGER_OUT': macro redefinition
+  c:\projects\core\src\logger.h(47): note: see previous definition of 'LOGGER_OUT'
+  func.cpp
+c:\projects\core\src\strings.h(60): warning C4521: 'core::Str': multiple copy constructors specified
+c:\projects\core\src\strings.h(119): warning C4521: 'core::String': multiple copy constructors specified
+c:\projects\core\src\logger.h(48): warning C4005: 'LOGGER_OUT': macro redefinition
+  c:\projects\core\src\logger.h(47): note: see previous definition of 'LOGGER_OUT'
+c:\projects\core\src\func.cpp(50): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: see declaration of 'sprintf'
+c:\projects\core\src\func.cpp(59): warning C4244: 'argument': conversion from '__int64' to 'DWORD', possible loss of data
+  config.cpp
+c:\projects\core\src\strings.h(60): warning C4521: 'core::Str': multiple copy constructors specified
+c:\projects\core\src\strings.h(119): warning C4521: 'core::String': multiple copy constructors specified
+c:\projects\core\src\logger.h(48): warning C4005: 'LOGGER_OUT': macro redefinition
+  c:\projects\core\src\logger.h(47): note: see previous definition of 'LOGGER_OUT'
+  buffer.cpp
+c:\projects\core\src\strings.h(60): warning C4521: 'core::Str': multiple copy constructors specified
+c:\projects\core\src\strings.h(119): warning C4521: 'core::String': multiple copy constructors specified
+c:\projects\core\src\logger.h(48): warning C4005: 'LOGGER_OUT': macro redefinition
+  c:\projects\core\src\logger.h(47): note: see previous definition of 'LOGGER_OUT'
+  application.cpp
+c:\projects\core\src\strings.h(60): warning C4521: 'core::Str': multiple copy constructors specified
+c:\projects\core\src\strings.h(119): warning C4521: 'core::String': multiple copy constructors specified
+c:\projects\core\src\logger.h(48): warning C4005: 'LOGGER_OUT': macro redefinition
+  c:\projects\core\src\logger.h(47): note: see previous definition of 'LOGGER_OUT'
+  Generating Code...
+c:\projects\core\src\strings.cpp(89): warning C4717: 'core::operator+': recursive on all control paths, function will cause runtime stack overflow
+  core.vcxproj -> C:\projects\cms\vs2015\cms\Debug\core.lib
