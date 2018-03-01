@@ -1,5 +1,7 @@
 #include "core.h"
 
+#include <sstream>
+
 namespace core {
 
 	Char::Char() {
@@ -385,7 +387,9 @@ namespace core {
 		return a;
 	}
 	real String::toFloat() {
-		return 0;
+		String t = s;
+		if (t == "") return 0;
+		return stod(t.to_string());
 	}
 	String String::upperCase() {
 		s[0] = towupper(s[0]);
@@ -439,6 +443,9 @@ namespace core {
 		return s;
 	}
 	void String::fromFloat(real value, int digit) {
+		std::ostringstream buff;
+		buff << value;
+		s = ((String)buff.str()).s;
 	}
 
 }

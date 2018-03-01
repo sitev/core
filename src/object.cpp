@@ -10,9 +10,10 @@ namespace core {
 		return "Object";
 	}
 	String Object::getObjectName() {
-		return "";
+		return objName;
 	}
 	void Object::setObjectName(String value) {
+		objName = value.to_string();
 	}
 	bool Object::isParentClassExist(String className) {
 		return false;

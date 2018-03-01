@@ -9,6 +9,7 @@ namespace core {
 
 	class Object {
 	public:
+		string objName;
 		Object();
 		virtual ~Object();
 
