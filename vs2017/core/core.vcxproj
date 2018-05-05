@@ -19,35 +19,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\application.cpp" />
     <ClCompile Include="..\..\src\buffer.cpp" />
-    <ClCompile Include="..\..\src\config.cpp" />
     <ClCompile Include="..\..\src\func.cpp" />
     <ClCompile Include="..\..\src\list.cpp" />
-    <ClCompile Include="..\..\src\logger.cpp" />
     <ClCompile Include="..\..\src\object.cpp" />
-    <ClCompile Include="..\..\src\registry.cpp" />
     <ClCompile Include="..\..\src\stream.cpp" />
     <ClCompile Include="..\..\src\strings.cpp" />
     <ClCompile Include="..\..\src\utf.cpp" />
-    <ClCompile Include="..\..\src\xmlParser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\application.h" />
     <ClInclude Include="..\..\src\buffer.h" />
     <ClInclude Include="..\..\src\cfg.h" />
-    <ClInclude Include="..\..\src\config.h" />
     <ClInclude Include="..\..\src\core.h" />
     <ClInclude Include="..\..\src\func.h" />
     <ClInclude Include="..\..\src\list.h" />
-    <ClInclude Include="..\..\src\logger.h" />
     <ClInclude Include="..\..\src\object.h" />
-    <ClInclude Include="..\..\src\registry.h" />
     <ClInclude Include="..\..\src\stream.h" />
     <ClInclude Include="..\..\src\strings.h" />
     <ClInclude Include="..\..\src\types.h" />
     <ClInclude Include="..\..\src\utf.h" />
-    <ClInclude Include="..\..\src\xmlParser.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
