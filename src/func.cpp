@@ -55,25 +55,9 @@ namespace core {
 
 #ifdef OS_WINDOWS
 	//static int usleep_cnt = 0;
-	void usleep(big usec) {
+	void usleep(uint usec) {
 		Sleep(usec / 1000);
 		//std::this_thread::sleep_for(std::chrono::microseconds(usec));
-		/*
-		//Sleep(usec / 1000);
-		if (usleep_cnt % 10 == 0) Sleep(usec / 100);
-		usleep_cnt++;
-		*/
-		/*
-		HANDLE timer;
-		LARGE_INTEGER ft;
-
-		ft.QuadPart = -(10 * usec); // Convert to 100 nanosecond interval, negative value indicates relative time
-
-		timer = CreateWaitableTimer(NULL, TRUE, NULL);
-		SetWaitableTimer(timer, &ft, 0, NULL, NULL, 0);
-		WaitForSingleObject(timer, INFINITE);
-		CloseHandle(timer);
-		*/
 	}
 #endif
 #ifdef OS_LINUX

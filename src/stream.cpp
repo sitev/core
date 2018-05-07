@@ -73,21 +73,19 @@ int Stream::writeChar(char value) {
 	write(&value, sizeof(char));
 	return 0;
 }
-int Stream::readUChar(uchar &value) {
-	read(&value, sizeof(uchar));
+int Stream::readByte(byte &value) {
+	return read(&value, sizeof(byte));
+}
+int Stream::writeByte(byte value) {
+	write(&value, sizeof(byte));
 	return 0;
 }
-int Stream::writeUChar(uchar value) {
-	/*
-	static int iii = 0;
-	iii++;
-	printf("{%d} ", iii);
-	if (iii == 13) {
-		int a = 1;
-		//return;
-	}
-	*/
-	write(&value, sizeof(uchar));
+int Stream::readUByte(ubyte &value) {
+	read(&value, sizeof(ubyte));
+	return 0;
+}
+int Stream::writeUByte(ubyte value) {
+	write(&value, sizeof(ubyte));
 	return 0;
 }
 int Stream::readShort(short &value) {
@@ -122,6 +120,7 @@ int Stream::writeULong(ulong value) {
 	write(&value, sizeof(ulong));
 	return 0;
 }
+#ifdef ENVIRONMENT64
 int Stream::readBig(int &value) {
 	read(&value, sizeof(int));
 	return 0;
@@ -138,6 +137,7 @@ int Stream::writeUBig(ubig value) {
 	write(&value, sizeof(ubig));
 	return 0;
 }
+#endif
 int Stream::readFloat(float &value) {
 	read(&value, sizeof(float));
 	return 0;
@@ -403,19 +403,19 @@ bool File::open() {
 }
 int File::getSize() {
 #ifdef OS_WINDOWS
-    big pos, size;
+    ilong pos, size;
     fgetpos(f, &pos);
     fseek(f, 0, SEEK_END);
     fgetpos(f, &size);
-    fseek(f, (int)pos, SEEK_SET);
+    fseek(f, (long)pos, SEEK_SET);
     return (int)size;
 #endif
 #ifdef OS_LINUX
-    big pos, size;
+    ilong pos, size;
     pos = ftell(f);
     fseek(f, 0, SEEK_END);
     size = ftell(f);
-    fseek(f, (int)pos, SEEK_SET);
+    fseek(f, (long)pos, SEEK_SET);
     return (int)size;
 #endif
 }
@@ -428,13 +428,13 @@ void File::setSize(int value) {
 
 int File::getPos() {
 #ifdef OS_WINDOWS
-	big pos;
+	ilong pos;
 	fgetpos(f, &pos);
 	return (int)pos;
 #endif
 
 #ifdef OS_LINUX
-	big pos;
+	ilong pos;
 	pos = ftell(f);
 	return (int)pos;
 #endif
@@ -442,7 +442,7 @@ int File::getPos() {
 
 void File::setPos(int value) {
 #ifdef OS_WINDOWS
-	big pos = value;
+	ilong pos = value;
 	fsetpos(f, &pos);
 #endif
 #ifdef OS_LINUX

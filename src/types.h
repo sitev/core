@@ -1,35 +1,38 @@
 #pragma once
 
-//char
-//short
-//long
+//bool  - 8 bit
+//short - 16 bit
+//int   - 32 bit
+//long  - 32 / 64 bit (depricated)
+
+#define byte char
+#define ubyte unsigned char
+#define ushort unsigned short
+#define uint unsigned int
+
+//size_t - 32 / 64 bit
+//ilong - 64 bit
+//ulong - 64 bit
+
 #ifdef OS_WINDOWS
-#define big __int64
+#define ilong __int64
+#define ulong unsigned __int64
 #endif
 
 #ifdef OS_LINUX
-#define big long long
+#define ilong long long
+#define ulong unsigned __int64
 #endif
 
-#define byte unsigned char
+#define big __int128
+#define ubig unsigned __int128
 
-#define uchar unsigned char
-#define ushort unsigned short
-#define ulong unsigned long
-#define ubig unsigned big
-
-//int
-#define uint unsigned int
 
 //float
 //double
-#define real double
+#define real long double
 
-//bool
 
-#ifdef OS_LINUX
-//#define SOCKET int
-//#define DWORD ulong
-//#define ULONG ulong
-#endif
-
+//char     - 8 bit
+//char16_t - 16 bit
+//char32_t - 32 bit

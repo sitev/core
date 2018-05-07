@@ -30,8 +30,10 @@ public:
 
 	virtual int readChar(char &value);
 	virtual int writeChar(char value);
-	virtual int readUChar(uchar &value);
-	virtual int writeUChar(uchar value);
+	virtual int readByte(byte &value);
+	virtual int writeByte(byte value);
+	virtual int readUByte(ubyte &value);
+	virtual int writeUByte(ubyte value);
 
 	virtual int readShort(short &value);
 	virtual int writeShort(short value);
@@ -43,10 +45,12 @@ public:
 	virtual int readULong(ulong &value);
 	virtual int writeULong(ulong value);
 
+#ifdef ENVIRONMENT64
 	virtual int readBig(int &value);
 	virtual int writeBig(int value);
 	virtual int readUBig(ubig &value);
 	virtual int writeUBig(ubig value);
+#endif
 
 	virtual int readFloat(float &value);
 	virtual int writeFloat(float value);

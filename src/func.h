@@ -13,7 +13,7 @@ namespace core {
 	String generateUUID();
 	String generateSimpleUUID();
 #ifdef OS_WINDOWS
-	void usleep(big usec);
+	void usleep(uint usec);
 #endif
 #ifdef OS_LINUX
 	ulong GetTickCount();
