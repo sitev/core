@@ -45,7 +45,7 @@ public:
 	virtual int readULong(ulong &value);
 	virtual int writeULong(ulong value);
 
-#ifdef ENVIRONMENT64
+#ifdef ENVIRONMENT64_a
 	virtual int readBig(int &value);
 	virtual int writeBig(int value);
 	virtual int readUBig(ubig &value);

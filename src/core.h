@@ -38,7 +38,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <time.h>
+//#include <time.h>
 
 #ifdef OS_LINUX
 #include <sys/io.h>
@@ -87,7 +87,7 @@ using namespace std;
 
 #ifdef OS_WINDOWS
 #include <iomanip>
-#include <ctime>
+//#include <ctime>
 #endif
 
 #ifdef USING_UTF

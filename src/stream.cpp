@@ -120,7 +120,7 @@ int Stream::writeULong(ulong value) {
 	write(&value, sizeof(ulong));
 	return 0;
 }
-#ifdef ENVIRONMENT64
+#ifdef ENVIRONMENT64_a
 int Stream::readBig(int &value) {
 	read(&value, sizeof(int));
 	return 0;
