@@ -1,5 +1,18 @@
 #pragma once
 
+//--- IDE type
+enum T_CJ_IDE_TYPE { CJ_IDE_VISUAL_STUDIO, CJ_IDE_QT, CJ_IDE_CPP_BUILDER };
+#define CJ_IDE_TYPE CJ_IDE_VISUAL_STUDIO
+
+//--- String type
+enum T_CJ_STRING_TYPE { CJ_STRING_STL, CJ_STRING_BOOST, CJ_STRING_QT, CJ_STRING_NET, CJ_STRING_CPP_BUILDER };
+#define CJ_STRING_TYPE CJ_STRING_STL
+
+
+
+
+//--- old
+
 #define USING_STL
 // #define USING_BOOST
 // #define USING_QT
