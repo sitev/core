@@ -21,7 +21,7 @@
 
 #ifdef OS_LINUX
 #define ilong long long
-#define ulong long long
+#define ulong unsigned long long
 #endif
 
 #define big __int128
